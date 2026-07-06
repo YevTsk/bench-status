@@ -1,0 +1,272 @@
+<title>Bench Tracker · Yevhenii Tskhovrebov</title>
+<style>
+  :root {
+    --bg: #f0f4f8;
+    --surface: #ffffff;
+    --border: #dce3ec;
+    --accent: #0d9488;
+    --text: #1a2535;
+    --muted: #6b7f96;
+    --done-bg: #ecfdf5;
+    --done-border: #a7f3d0;
+    --done-text: #065f46;
+    --progress-bg: #eff6ff;
+    --progress-border: #bfdbfe;
+    --progress-text: #1e40af;
+    --wait-bg: #fffbeb;
+    --wait-border: #fde68a;
+    --wait-text: #92400e;
+    --radius: 10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 40px 20px 60px;
+  }
+
+  .page { max-width: 780px; margin: 0 auto; }
+
+  /* HEADER */
+  .page-header {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .page-header-left h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .page-header-left .subtitle {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .page-header-left .subtitle span {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .updated {
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+    padding-top: 4px;
+  }
+  .updated b { color: var(--text); }
+
+  /* SUMMARY CHIPS */
+  .summary-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid;
+  }
+  .chip-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .chip.done    { background: var(--done-bg);     border-color: var(--done-border);     color: var(--done-text); }
+  .chip.done .chip-dot { background: #10b981; }
+  .chip.progress { background: var(--progress-bg); border-color: var(--progress-border); color: var(--progress-text); }
+  .chip.progress .chip-dot { background: #3b82f6; }
+  .chip.waiting  { background: var(--wait-bg);     border-color: var(--wait-border);     color: var(--wait-text); }
+  .chip.waiting .chip-dot { background: #f59e0b; }
+
+  /* SECTION */
+  .section { margin-bottom: 24px; }
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 10px;
+    padding-left: 4px;
+  }
+
+  /* TASK CARD */
+  .task-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .task-card:last-child { margin-bottom: 0; }
+
+  .status-icon {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .status-icon.done     { background: var(--done-bg);     color: #10b981; border: 1.5px solid var(--done-border); }
+  .status-icon.progress { background: var(--progress-bg); color: #3b82f6; border: 1.5px solid var(--progress-border); }
+  .status-icon.waiting  { background: var(--wait-bg);     color: #f59e0b; border: 1.5px solid var(--wait-border); }
+
+  .task-body { flex: 1; }
+  .task-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+  .task-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+  .task-meta {
+    margin-top: 6px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .tag.done     { background: var(--done-bg);     color: var(--done-text);     border: 1px solid var(--done-border); }
+  .tag.progress { background: var(--progress-bg); color: var(--progress-text); border: 1px solid var(--progress-border); }
+  .tag.waiting  { background: var(--wait-bg);     color: var(--wait-text);     border: 1px solid var(--wait-border); }
+  .tag.neutral  { background: #f1f5f9; color: var(--muted); border: 1px solid var(--border); }
+
+  /* done group collapses under line */
+  .done-group { border-left: 3px solid var(--done-border); padding-left: 12px; }
+  .done-group .task-card { border-color: var(--done-border); background: var(--done-bg); }
+  .done-group .task-name { color: #065f46; }
+
+  @media (max-width: 540px) {
+    body { padding: 20px 12px 40px; }
+    .page-header { flex-direction: column; gap: 8px; }
+  }
+</style>
+
+<div class="page">
+
+  <div class="page-header">
+    <div class="page-header-left">
+      <h1>Yevhenii Tskhovrebov</h1>
+      <div class="subtitle">Senior QA Engineer · <span>On Bench</span></div>
+    </div>
+    <div class="updated">Last updated: <b>July 6, 2026</b></div>
+  </div>
+
+  <div class="summary-row">
+    <div class="chip done">
+      <div class="chip-dot"></div>
+      8 Completed
+    </div>
+    <div class="chip progress">
+      <div class="chip-dot"></div>
+      1 In Progress
+    </div>
+    <div class="chip waiting">
+      <div class="chip-dot"></div>
+      1 Awaiting Input
+    </div>
+  </div>
+
+  <!-- IN PROGRESS -->
+  <div class="section">
+    <div class="section-title">In Progress</div>
+
+    <div class="task-card">
+      <div class="status-icon progress">▶</div>
+      <div class="task-body">
+        <div class="task-name">Claude Code in Action — Anthropic Academy</div>
+        <div class="task-desc">Hands-on course covering advanced Claude Code workflows, agent patterns, and real-world automation scenarios. Continuation of the completed theory modules.</div>
+        <div class="task-meta">
+          <span class="tag progress">In Progress</span>
+          <span class="tag neutral">Self-development</span>
+          <span class="tag neutral">AI Tooling</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AWAITING -->
+  <div class="section">
+    <div class="section-title">Awaiting Input</div>
+
+    <div class="task-card">
+      <div class="status-icon waiting">⏳</div>
+      <div class="task-body">
+        <div class="task-name">AI Community Initiative</div>
+        <div class="task-desc">Contacted the initiative lead. Awaiting task assignment to begin contribution. Ready to start as soon as scope is defined.</div>
+        <div class="task-meta">
+          <span class="tag waiting">Awaiting Task</span>
+          <span class="tag neutral">Internal Initiative</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPLETED -->
+  <div class="section">
+    <div class="section-title">Completed</div>
+    <div class="done-group">
+
+      <div class="task-card">
+        <div class="status-icon done">✓</div>
+        <div class="task-body">
+          <div class="task-name">CV Update &amp; Preparation</div>
+          <div class="task-desc">Full revision of professional CV — updated project descriptions, skills, and formatting for external positioning.</div>
+          <div class="task-meta">
+            <span class="tag done">Done July 3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <div class="status-icon done">✓</div>
+        <div class="task-body">
+          <div class="task-name">Anthropic Academy — 6 Courses Completed</div>
+          <div class="task-desc">Completed full learning path covering Claude fundamentals, Claude Code, Model Context Protocol, subagents, agent skills, and MCP advanced topics.</div>
+          <div class="task-meta">
+            <span class="tag done">Done July 6</span>
+            <span class="tag neutral">Claude 101</span>
+            <span class="tag neutral">Claude Code 101</span>
+            <span class="tag neutral">Intro to MCP</span>
+            <span class="tag neutral">Subagents</span>
+            <span class="tag neutral">Agent Skills</span>
+            <span class="tag neutral">MCP Advanced</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
