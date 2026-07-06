@@ -235,6 +235,11 @@ body {
   color: var(--text);
   margin-bottom: 3px;
 }
+.task-name-link {
+  color: inherit;
+  text-decoration: none;
+}
+.task-name-link:hover { color: var(--accent); text-decoration: underline; }
 .task-desc {
   font-size: 13px;
   color: var(--muted);
@@ -252,6 +257,11 @@ body {
   border-radius: 4px;
   font-weight: 500;
 }
+a.tag {
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+a.tag:hover { border-color: var(--accent); color: var(--accent); }
 .tag.done     { background: var(--done-bg);     color: var(--done-text);     border: 1px solid var(--done-border); }
 .tag.progress { background: var(--progress-bg); color: var(--progress-text); border: 1px solid var(--progress-border); }
 .tag.waiting  { background: var(--wait-bg);     color: var(--wait-text);     border: 1px solid var(--wait-border); }
