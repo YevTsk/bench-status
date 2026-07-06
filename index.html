@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bench Tracker · Yevhenii Tskhovrebov</title>
 <style>
   :root {
@@ -20,6 +25,8 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { -webkit-text-size-adjust: 100%; }
 
   body {
     background: var(--bg);
@@ -44,6 +51,7 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 20px;
+    flex-wrap: wrap;
   }
   .page-header-left h1 {
     font-size: 20px;
@@ -133,7 +141,7 @@
   .status-icon.progress { background: var(--progress-bg); color: #3b82f6; border: 1.5px solid var(--progress-border); }
   .status-icon.waiting  { background: var(--wait-bg);     color: #f59e0b; border: 1.5px solid var(--wait-border); }
 
-  .task-body { flex: 1; }
+  .task-body { flex: 1; min-width: 0; }
   .task-name {
     font-size: 14px;
     font-weight: 600;
@@ -167,12 +175,44 @@
   .done-group .task-card { border-color: var(--done-border); background: var(--done-bg); }
   .done-group .task-name { color: #065f46; }
 
-  @media (max-width: 540px) {
-    body { padding: 20px 12px 40px; }
-    .page-header { flex-direction: column; gap: 8px; }
+  /* ---------- Responsive ---------- */
+  @media (max-width: 600px) {
+    body { padding: 20px 12px 40px; font-size: 14px; }
+
+    .page-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 18px 18px;
+    }
+    .page-header-left h1 { font-size: 18px; }
+    .updated { padding-top: 0; }
+
+    .summary-row { gap: 8px; margin-bottom: 20px; }
+    .chip { font-size: 12px; padding: 6px 11px; }
+
+    .task-card {
+      padding: 13px 14px;
+      gap: 10px;
+    }
+    .status-icon {
+      width: 24px; height: 24px;
+      font-size: 11px;
+    }
+    .task-name { font-size: 13.5px; }
+    .task-desc { font-size: 12.5px; }
+    .tag { font-size: 10px; padding: 2px 7px; }
+
+    .done-group { padding-left: 9px; }
+  }
+
+  @media (max-width: 380px) {
+    .summary-row { flex-direction: column; align-items: flex-start; }
+    .chip { width: 100%; }
   }
 </style>
-
+</head>
+<body>
 <div class="page">
 
   <div class="page-header">
@@ -270,3 +310,5 @@
   </div>
 
 </div>
+</body>
+</html>
