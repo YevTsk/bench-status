@@ -106,25 +106,27 @@
   .page { max-width: 780px; margin: 0 auto; }
 
   .theme-toggle {
-    position: fixed;
-    top: 16px;
+    position: absolute;
+    top: 14px;
     right: 16px;
-    width: 34px;
-    height: 34px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
-    background: var(--surface);
+    background: var(--bg);
     border: 1px solid var(--border);
     color: var(--text);
-    font-size: 15px;
+    font-size: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    flex-shrink: 0;
   }
   .theme-toggle:hover { border-color: var(--accent); }
 
   /* HEADER */
   .page-header {
+    position: relative;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -155,6 +157,7 @@
     color: var(--muted);
     white-space: nowrap;
     padding-top: 4px;
+    margin-top: 30px;
   }
   .updated b { color: var(--text); }
 
@@ -269,7 +272,7 @@
       padding: 18px 18px;
     }
     .page-header-left h1 { font-size: 18px; }
-    .updated { padding-top: 0; }
+    .updated { padding-top: 0; margin-top: 0; }
 
     .summary-row { gap: 8px; margin-bottom: 20px; }
     .chip { font-size: 12px; padding: 6px 11px; }
@@ -296,10 +299,10 @@
 </style>
 </head>
 <body>
-<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
 <div class="page">
 
   <div class="page-header">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
     <div class="page-header-left">
       <h1>Yevhenii Tskhovrebov</h1>
       <div class="subtitle">Senior QA Engineer · <span>On Bench</span></div>
