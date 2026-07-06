@@ -24,6 +24,26 @@
     --radius: 10px;
   }
 
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b1220;
+      --surface: #131b2c;
+      --border: #232f45;
+      --accent: #2dd4bf;
+      --text: #e5eaf2;
+      --muted: #8b9bb4;
+      --done-bg: #0f2e22;
+      --done-border: #1f6a4c;
+      --done-text: #6ee7b7;
+      --progress-bg: #101f36;
+      --progress-border: #2c4a7c;
+      --progress-text: #93c5fd;
+      --wait-bg: #2e2408;
+      --wait-border: #5c4813;
+      --wait-text: #fbbf24;
+    }
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { -webkit-text-size-adjust: 100%; }
@@ -173,7 +193,7 @@
   /* done group collapses under line */
   .done-group { border-left: 3px solid var(--done-border); padding-left: 12px; }
   .done-group .task-card { border-color: var(--done-border); background: var(--done-bg); }
-  .done-group .task-name { color: #065f46; }
+  .done-group .task-name { color: var(--done-text); }
 
   /* ---------- Responsive ---------- */
   @media (max-width: 600px) {
