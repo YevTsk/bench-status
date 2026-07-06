@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bench Tracker · Yevhenii Tskhovrebov</title>
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') {
+      document.documentElement.setAttribute('data-theme', saved);
+    }
+  })();
+</script>
 <style>
   :root {
     --bg: #f0f4f8;
@@ -44,6 +52,42 @@
     }
   }
 
+  :root[data-theme="dark"] {
+    --bg: #0b1220;
+    --surface: #131b2c;
+    --border: #232f45;
+    --accent: #2dd4bf;
+    --text: #e5eaf2;
+    --muted: #8b9bb4;
+    --done-bg: #0f2e22;
+    --done-border: #1f6a4c;
+    --done-text: #6ee7b7;
+    --progress-bg: #101f36;
+    --progress-border: #2c4a7c;
+    --progress-text: #93c5fd;
+    --wait-bg: #2e2408;
+    --wait-border: #5c4813;
+    --wait-text: #fbbf24;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f0f4f8;
+    --surface: #ffffff;
+    --border: #dce3ec;
+    --accent: #0d9488;
+    --text: #1a2535;
+    --muted: #6b7f96;
+    --done-bg: #ecfdf5;
+    --done-border: #a7f3d0;
+    --done-text: #065f46;
+    --progress-bg: #eff6ff;
+    --progress-border: #bfdbfe;
+    --progress-text: #1e40af;
+    --wait-bg: #fffbeb;
+    --wait-border: #fde68a;
+    --wait-text: #92400e;
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { -webkit-text-size-adjust: 100%; }
@@ -56,9 +100,28 @@
     line-height: 1.5;
     min-height: 100vh;
     padding: 40px 20px 60px;
+    transition: background 0.15s ease, color 0.15s ease;
   }
 
   .page { max-width: 780px; margin: 0 auto; }
+
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .theme-toggle:hover { border-color: var(--accent); }
 
   /* HEADER */
   .page-header {
@@ -233,6 +296,7 @@
 </style>
 </head>
 <body>
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
 <div class="page">
 
   <div class="page-header">
@@ -330,5 +394,31 @@
   </div>
 
 </div>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('theme-toggle');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function currentTheme() {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'dark' || saved === 'light') return saved;
+      return prefersDark.matches ? 'dark' : 'light';
+    }
+
+    function updateIcon() {
+      toggle.textContent = currentTheme() === 'dark' ? '☀️' : '🌙';
+    }
+
+    toggle.addEventListener('click', function () {
+      var next = currentTheme() === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      document.documentElement.setAttribute('data-theme', next);
+      updateIcon();
+    });
+
+    updateIcon();
+  })();
+</script>
 </body>
 </html>
