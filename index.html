@@ -20,9 +20,9 @@
   </div>
 
   <div class="summary-row">
-    <div class="chip done">
+    <div class="chip queued">
       <div class="chip-dot"></div>
-      8 Completed
+      0 To Do
     </div>
     <div class="chip progress">
       <div class="chip-dot"></div>
@@ -30,79 +30,158 @@
     </div>
     <div class="chip waiting">
       <div class="chip-dot"></div>
-      1 Awaiting Input
+      1 On Hold
+    </div>
+    <div class="chip done">
+      <div class="chip-dot"></div>
+      7 Done
     </div>
   </div>
 
-  <!-- IN PROGRESS -->
-  <div class="section">
-    <div class="section-title">In Progress</div>
+  <div class="board">
 
-    <div class="task-card">
-      <div class="status-icon progress"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8V4z"/></svg></div>
-      <div class="task-body">
-        <div class="task-name">Claude Code in Action — Anthropic Academy</div>
-        <div class="task-desc">Hands-on course covering advanced Claude Code workflows, agent patterns, and real-world automation scenarios. Continuation of the completed theory modules.</div>
-        <div class="task-meta">
-          <span class="tag progress">In Progress</span>
-          <span class="tag neutral">Self-development</span>
-          <span class="tag neutral">AI Tooling</span>
+    <!-- TO DO -->
+    <div class="board-column">
+      <div class="board-column-header">
+        <div class="board-column-heading">
+          <span class="status-icon queued"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></span>
+          <span class="board-column-title">To Do</span>
         </div>
+        <span class="board-column-count">0</span>
+      </div>
+      <div class="board-column-body">
+        <div class="empty-state">Nothing queued</div>
       </div>
     </div>
-  </div>
 
-  <!-- AWAITING -->
-  <div class="section">
-    <div class="section-title">Awaiting Input</div>
-
-    <div class="task-card">
-      <div class="status-icon waiting"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></div>
-      <div class="task-body">
-        <div class="task-name">AI Community Initiative</div>
-        <div class="task-desc">Contacted the initiative lead. Awaiting task assignment to begin contribution. Ready to start as soon as scope is defined.</div>
-        <div class="task-meta">
-          <span class="tag waiting">Awaiting Task</span>
-          <span class="tag neutral">Internal Initiative</span>
+    <!-- IN PROGRESS -->
+    <div class="board-column">
+      <div class="board-column-header">
+        <div class="board-column-heading">
+          <span class="status-icon progress"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8V4z"/></svg></span>
+          <span class="board-column-title">In Progress</span>
         </div>
+        <span class="board-column-count">1</span>
       </div>
-    </div>
-  </div>
-
-  <!-- COMPLETED -->
-  <div class="section">
-    <div class="section-title">Completed</div>
-    <div class="done-group">
-
-      <div class="task-card">
-        <div class="status-icon done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12 9 17 20 6"/></svg></div>
-        <div class="task-body">
-          <div class="task-name"><a class="task-name-link" href="https://anthropic.skilljar.com/" target="_blank" rel="noopener">Anthropic Academy — 6 Courses Completed</a></div>
-          <div class="task-desc">Completed full learning path covering Claude fundamentals, Claude Code, Model Context Protocol, subagents, agent skills, and MCP advanced topics.</div>
-          <div class="task-meta">
-            <span class="tag done">Done July 6</span>
-            <a class="tag neutral" href="https://verify.skilljar.com/c/ue9st7byj8dq" target="_blank" rel="noopener">Claude 101 ↗</a>
-            <a class="tag neutral" href="https://verify.skilljar.com/c/iwqh6jnffpim" target="_blank" rel="noopener">Claude Code 101 ↗</a>
-            <a class="tag neutral" href="https://verify.skilljar.com/c/spdpdqbm4bbp" target="_blank" rel="noopener">Intro to MCP ↗</a>
-            <a class="tag neutral" href="https://verify.skilljar.com/c/93recc4htcdb" target="_blank" rel="noopener">Subagents ↗</a>
-            <a class="tag neutral" href="https://verify.skilljar.com/c/qup36p34rpw9" target="_blank" rel="noopener">Agent Skills ↗</a>
-            <a class="tag neutral" href="https://verify.skilljar.com/c/tr6o33rqc4vz" target="_blank" rel="noopener">MCP Advanced ↗</a>
+      <div class="board-column-body">
+        <div class="task-card">
+          <div class="task-body">
+            <div class="task-name">Claude Code in Action</div>
+            <div class="task-desc">Hands-on course covering advanced Claude Code workflows, agent patterns, and real-world automation scenarios. Continuation of the completed theory modules.</div>
+            <div class="task-meta">
+              <span class="tag progress">In Progress</span>
+              <span class="tag neutral">Anthropic Academy</span>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="task-card">
-        <div class="status-icon done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12 9 17 20 6"/></svg></div>
-        <div class="task-body">
-          <div class="task-name">CV Update &amp; Preparation</div>
-          <div class="task-desc">Full revision of professional CV — updated project descriptions, skills, and formatting for external positioning.</div>
-          <div class="task-meta">
-            <span class="tag done">Done July 3</span>
+    <!-- ON HOLD -->
+    <div class="board-column">
+      <div class="board-column-header">
+        <div class="board-column-heading">
+          <span class="status-icon waiting"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></span>
+          <span class="board-column-title">On Hold</span>
+        </div>
+        <span class="board-column-count">1</span>
+      </div>
+      <div class="board-column-body">
+        <div class="task-card">
+          <div class="task-body">
+            <div class="task-name">AI Community Initiative</div>
+            <div class="task-desc">Contacted the initiative lead. Awaiting task assignment to begin contribution. Ready to start as soon as scope is defined.</div>
+            <div class="task-meta">
+              <span class="tag waiting">Awaiting Task</span>
+              <span class="tag neutral">Internal Initiative</span>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
+
+    <!-- DONE -->
+    <div class="board-column">
+      <div class="board-column-header">
+        <div class="board-column-heading">
+          <span class="status-icon done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12 9 17 20 6"/></svg></span>
+          <span class="board-column-title">Done</span>
+        </div>
+        <span class="board-column-count">7</span>
+      </div>
+      <div class="board-column-body">
+        <div class="task-card">
+          <div class="task-body">
+            <div class="task-name"><a class="task-name-link" href="https://verify.skilljar.com/c/ue9st7byj8dq" target="_blank" rel="noopener">Claude 101</a></div>
+            <div class="task-meta">
+              <span class="tag done">Done July 6</span>
+              <span class="tag neutral">Anthropic Academy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-card">
+          <div class="task-body">
+            <div class="task-name"><a class="task-name-link" href="https://verify.skilljar.com/c/iwqh6jnffpim" target="_blank" rel="noopener">Claude Code 101</a></div>
+            <div class="task-meta">
+              <span class="tag done">Done July 6</span>
+              <span class="tag neutral">Anthropic Academy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-card">
+          <div class="task-body">
+            <div class="task-name"><a class="task-name-link" href="https://verify.skilljar.com/c/spdpdqbm4bbp" target="_blank" rel="noopener">Intro to MCP</a></div>
+            <div class="task-meta">
+              <span class="tag done">Done July 6</span>
+              <span class="tag neutral">Anthropic Academy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-card">
+          <div class="task-body">
+            <div class="task-name"><a class="task-name-link" href="https://verify.skilljar.com/c/93recc4htcdb" target="_blank" rel="noopener">Introduction to Subagents</a></div>
+            <div class="task-meta">
+              <span class="tag done">Done July 6</span>
+              <span class="tag neutral">Anthropic Academy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-card">
+          <div class="task-body">
+            <div class="task-name"><a class="task-name-link" href="https://verify.skilljar.com/c/qup36p34rpw9" target="_blank" rel="noopener">Introduction to Agent Skills</a></div>
+            <div class="task-meta">
+              <span class="tag done">Done July 6</span>
+              <span class="tag neutral">Anthropic Academy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-card">
+          <div class="task-body">
+            <div class="task-name"><a class="task-name-link" href="https://verify.skilljar.com/c/tr6o33rqc4vz" target="_blank" rel="noopener">Model Context Protocol: Advanced Topics</a></div>
+            <div class="task-meta">
+              <span class="tag done">Done July 6</span>
+              <span class="tag neutral">Anthropic Academy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-card">
+          <div class="task-body">
+            <div class="task-name">CV Update &amp; Preparation</div>
+            <div class="task-desc">Full revision of professional CV — updated project descriptions, skills, and formatting for external positioning.</div>
+            <div class="task-meta">
+              <span class="tag done">Done July 3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </div>
