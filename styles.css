@@ -98,7 +98,8 @@
 html { -webkit-text-size-adjust: 100%; }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: radial-gradient(900px 480px at 100% -120px, rgba(20, 184, 166, 0.07), transparent 60%);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
   font-size: 15px;
@@ -178,6 +179,35 @@ body {
   margin-top: 30px;
 }
 .updated b { color: var(--text); }
+
+/* HERO / AVATAR */
+.page-header-left { display: flex; align-items: center; gap: 16px; }
+.avatar {
+  position: relative;
+  width: 56px; height: 56px;
+  flex-shrink: 0;
+  border: none; padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #14b8a6, #0d9488);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-sm);
+  cursor: default;
+}
+.avatar.editable { cursor: pointer; }
+.avatar-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.avatar-mono { font-size: 20px; font-weight: 700; letter-spacing: 0.02em; }
+.avatar-edit {
+  position: absolute; inset: 0;
+  display: none;
+  align-items: center; justify-content: center;
+  background: rgba(0, 0, 0, 0.45); color: #fff;
+}
+.avatar-edit svg { width: 20px; height: 20px; }
+.avatar.editable:hover .avatar-edit { display: flex; }
+
+.hero-stats { font-size: 12px; color: var(--muted); margin-top: 7px; }
 
 /* SUMMARY CHIPS */
 .summary-row {
@@ -447,6 +477,13 @@ a.tag:hover { border-color: var(--accent); color: var(--accent); }
 .tag.progress { background: var(--progress-bg); color: var(--progress-text); border: 1px solid var(--progress-border); }
 .tag.waiting  { background: var(--wait-bg);     color: var(--wait-text);     border: 1px solid var(--wait-border); }
 .tag.neutral  { background: var(--queued-bg); color: var(--queued-text); border: 1px solid var(--border); }
+
+/* focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 
 /* ---------- Modal ---------- */
 .modal-overlay {

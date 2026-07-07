@@ -129,7 +129,8 @@
   var stored = readStore();
   var state = {
     cards: stored ? stored.cards : SEED.map(clone),
-    tags: []
+    tags: [],
+    profile: stored && stored.profile ? stored.profile : { avatar: "" }
   };
   var dirty = stored ? stored.dirty : false;
   state.tags = loadTags();
@@ -148,8 +149,8 @@
       var raw = localStorage.getItem(STORE_KEY);
       if (raw) {
         var parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) return { cards: parsed, dirty: true };
-        if (parsed && Array.isArray(parsed.cards)) return { cards: parsed.cards, dirty: !!parsed.dirty };
+        if (Array.isArray(parsed)) return { cards: parsed, dirty: true, profile: {} };
+        if (parsed && Array.isArray(parsed.cards)) return { cards: parsed.cards, dirty: !!parsed.dirty, profile: parsed.profile || {} };
       }
     } catch (e) {}
     return null;
@@ -174,7 +175,7 @@
   }
 
   function persist() {
-    try { localStorage.setItem(STORE_KEY, JSON.stringify({ cards: state.cards, dirty: dirty })); } catch (e) {}
+    try { localStorage.setItem(STORE_KEY, JSON.stringify({ cards: state.cards, profile: state.profile, dirty: dirty })); } catch (e) {}
   }
   function saveLocal(flag) {
     dirty = !!flag;
@@ -227,14 +228,65 @@
     if (!board) return;
     board.innerHTML = COLUMNS.map(columnHtml).join("");
     updateCounts();
+    renderStats();
     updateLastUpdated();
+  }
+
+  function renderProfile() {
+    var img = document.getElementById("avatar-img");
+    var mono = document.getElementById("avatar-mono");
+    if (img && mono) {
+      var a = state.profile && state.profile.avatar;
+      if (a) { img.src = a; img.hidden = false; mono.hidden = true; }
+      else { img.hidden = true; img.removeAttribute("src"); mono.hidden = false; }
+    }
+    var btn = document.getElementById("avatar-btn");
+    if (btn) btn.classList.toggle("editable", !!getToken());
+  }
+
+  function renderStats() {
+    var el = document.getElementById("hero-stats");
+    if (!el) return;
+    var done = state.cards.filter(function (c) { return c.column === "done"; }).length;
+    var prog = state.cards.filter(function (c) { return c.column === "progress"; }).length;
+    var certs = state.cards.filter(function (c) { return c.link; }).length;
+    var dates = [];
+    state.cards.forEach(function (c) { if (c.start) dates.push(c.start); if (c.end) dates.push(c.end); });
+    dates.sort();
+    var parts = [];
+    parts.push(certs + (certs === 1 ? " certification" : " certifications"));
+    parts.push(done + " completed");
+    parts.push(prog + " in progress");
+    if (dates.length) parts.push("active since " + fmtDate(dates[0]));
+    el.textContent = parts.join("  ·  ");
+  }
+
+  function loadAvatar(file) {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var img = new Image();
+      img.onload = function () {
+        var max = 160;
+        var scale = Math.min(1, max / Math.max(img.width, img.height));
+        var w = Math.round(img.width * scale);
+        var h = Math.round(img.height * scale);
+        var c = document.createElement("canvas");
+        c.width = w; c.height = h;
+        c.getContext("2d").drawImage(img, 0, 0, w, h);
+        state.profile.avatar = c.toDataURL("image/jpeg", 0.85);
+        saveLocal(true);
+        renderProfile();
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
   }
 
   function columnHtml(col) {
     var cards = state.cards.filter(function (c) { return c.column === col.id; });
     var body = cards.length
       ? cards.map(cardHtml).join("")
-      : '<div class="empty-state">Nothing here</div>';
+      : '<div class="empty-state">Clear for now</div>';
 
     var addBtn = col.id === "todo"
       ? '<button class="card-add" data-col="' + col.id + '" title="Add card" aria-label="Add card">+</button>'
@@ -448,22 +500,24 @@
     };
   }
 
+  function parsePayload(j) {
+    if (!j) return null;
+    if (Array.isArray(j)) return { cards: j, profile: {} };
+    if (Array.isArray(j.cards)) return { cards: j.cards, profile: j.profile || {} };
+    return null;
+  }
+
   function fetchJson(url) {
     return fetch(url, { cache: "no-store" })
       .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (j) {
-        if (Array.isArray(j)) return j;
-        if (j && Array.isArray(j.cards)) return j.cards;
-        return null;
-      })
+      .then(parsePayload)
       .catch(function () { return null; });
   }
 
   function fetchPublished() {
     // same-origin file first (live site); fall back to GitHub raw for local file:// use
-    return fetchJson(GH.path).then(function (cards) {
-      if (cards) return cards;
-      return fetchJson(RAW_URL + "?t=" + Date.now());
+    return fetchJson(GH.path).then(function (p) {
+      return p || fetchJson(RAW_URL + "?t=" + Date.now());
     });
   }
 
@@ -472,7 +526,7 @@
     if (!token) { openTokenModal(); return; }
     setStatus("Сохранение…");
     var api = "https://api.github.com/repos/" + GH.owner + "/" + GH.repo + "/contents/" + GH.path;
-    var content = b64(JSON.stringify(state.cards, null, 2));
+    var content = b64(JSON.stringify({ profile: state.profile, cards: state.cards }, null, 2));
 
     fetch(api + "?ref=" + GH.branch, { headers: ghHeaders(token), cache: "no-store" })
       .then(function (r) {
@@ -659,17 +713,35 @@
       if (!document.getElementById("token-overlay").hidden) closeTokenModal();
     });
 
+    // avatar upload (owner only)
+    var avatarBtn = document.getElementById("avatar-btn");
+    var avatarInput = document.getElementById("avatar-input");
+    if (avatarBtn && avatarInput) {
+      avatarBtn.addEventListener("click", function () {
+        if (!getToken()) return;
+        avatarInput.click();
+      });
+      avatarInput.addEventListener("change", function () {
+        var file = avatarInput.files && avatarInput.files[0];
+        if (file) loadAvatar(file);
+        avatarInput.value = "";
+      });
+    }
+    renderProfile();
+
     updateSaveUI();
     if (dirty) setStatus(getToken() ? "Несохранённые изменения" : "Несохранённые изменения — подключите GitHub");
 
-    // adopt published data.json unless there are local unsaved edits
-    fetchPublished().then(function (cards) {
-      if (cards && !dirty) {
-        state.cards = cards;
+    // adopt published data unless there are local unsaved edits
+    fetchPublished().then(function (p) {
+      if (p && !dirty) {
+        state.cards = p.cards;
+        state.profile = p.profile || { avatar: "" };
         state.tags = loadTags();
         saveLocal(false);
         setStatus("");
         render();
+        renderProfile();
       }
     });
   }

@@ -3,9 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bench Tracker · Yevhenii Tskhovrebov</title>
+<title>Yevhenii Tskhovrebov · Senior QA Engineer — Bench Status</title>
+<meta name="description" content="Live status board of Yevhenii Tskhovrebov, Senior QA Engineer. Current work, on-hold items, and completed courses & certifications.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bench Status">
+<meta property="og:title" content="Yevhenii Tskhovrebov · Senior QA Engineer">
+<meta property="og:description" content="Available for assignment · actively upskilling. Live board of current work, on-hold items, and completed certifications.">
+<meta property="og:url" content="https://yevtsk.github.io/bench-status/">
+<meta property="og:image" content="https://yevtsk.github.io/bench-status/og-image.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Yevhenii Tskhovrebov · Senior QA Engineer">
+<meta name="twitter:description" content="Available for assignment · actively upskilling.">
+<meta name="twitter:image" content="https://yevtsk.github.io/bench-status/og-image.svg">
 <script src="theme-init.js"></script>
-<link rel="stylesheet" href="styles.css?v=1">
+<link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
 <div class="page">
@@ -18,8 +30,19 @@
       <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
     </div>
     <div class="page-header-left">
-      <h1>Yevhenii Tskhovrebov</h1>
-      <div class="subtitle">Senior QA Engineer · <span>On Bench</span></div>
+      <button type="button" class="avatar" id="avatar-btn" title="Change photo">
+        <img class="avatar-img" id="avatar-img" alt="Yevhenii Tskhovrebov" hidden>
+        <span class="avatar-mono" id="avatar-mono">YT</span>
+        <span class="avatar-edit" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </span>
+      </button>
+      <input type="file" id="avatar-input" accept="image/*" hidden>
+      <div class="page-header-id">
+        <h1>Yevhenii Tskhovrebov</h1>
+        <div class="subtitle">Senior QA Engineer</div>
+        <div class="hero-stats" id="hero-stats"></div>
+      </div>
     </div>
     <div class="updated">Last updated: <b id="last-updated">—</b></div>
   </div>
@@ -138,7 +161,7 @@
   </div>
 </div>
 
-<script src="app.js?v=1"></script>
+<script src="app.js?v=2"></script>
 <script src="theme-toggle.js"></script>
 </body>
 </html>
