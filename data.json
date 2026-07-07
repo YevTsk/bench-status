@@ -124,8 +124,8 @@
     {
       "id": "cmradq96ss13i",
       "column": "todo",
-      "title": "Test",
-      "desc": "Test",
+      "title": "Test Coverage Analysis",
+      "desc": "Assessing the need for a coverage script and its visual representation across projects.\nThe value of such tooling is hard to justify up front: coverage demand varies from project to project, metrics differ, and teams follow different approaches. There's no single number that fits everyone.\n\nAs a starting point, we could implement a basic API snapshot — a lightweight baseline view of coverage that any project can adopt without committing to a heavier, one-size-fits-all solution.",
       "start": "2026-07-07",
       "end": "",
       "link": "",
