@@ -2,8 +2,8 @@
   {
     "id": "cmrabeycjknbn",
     "column": "todo",
-    "title": "test",
-    "desc": "test test test test test test test test test test test test test test test test test test test",
+    "title": "Claude Refactor",
+    "desc": "Refactoring existing hooks / skills / md / agents / \nto use outside Axys",
     "start": "2026-07-07",
     "end": "2026-07-08",
     "link": "",
