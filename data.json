@@ -173,6 +173,16 @@
       "tags": [
         "CV"
       ]
+    },
+    {
+      "id": "cmraovu5ukijt",
+      "column": "todo",
+      "title": "NotebookLM Lab",
+      "desc": "“NotebookLM Lab” is a hands-on course on working with NotebookLM – an AI tool within the Google Workspace ecosystem, available as part of a corporate subscription. NotebookLM helps process large volumes of information and significantly simplifies working with them.",
+      "start": "",
+      "end": "",
+      "link": "",
+      "tags": []
     }
   ]
 }
