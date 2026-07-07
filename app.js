@@ -5,6 +5,7 @@
   var TAGS_KEY = "bench-tags";
   var TOKEN_KEY = "gh-token";
   var GH = { owner: "YevTsk", repo: "bench-status", branch: "main", path: "data.json" };
+  var RAW_URL = "https://raw.githubusercontent.com/" + GH.owner + "/" + GH.repo + "/" + GH.branch + "/" + GH.path;
 
   var COLUMNS = [
     { id: "todo", title: "To Do", icon: "queued", chip: "queued" },
@@ -444,8 +445,8 @@
     };
   }
 
-  function fetchPublished() {
-    return fetch(GH.path, { cache: "no-store" })
+  function fetchJson(url) {
+    return fetch(url, { cache: "no-store" })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (j) {
         if (Array.isArray(j)) return j;
@@ -453,6 +454,14 @@
         return null;
       })
       .catch(function () { return null; });
+  }
+
+  function fetchPublished() {
+    // same-origin file first (live site); fall back to GitHub raw for local file:// use
+    return fetchJson(GH.path).then(function (cards) {
+      if (cards) return cards;
+      return fetchJson(RAW_URL + "?t=" + Date.now());
+    });
   }
 
   function ghSave() {
