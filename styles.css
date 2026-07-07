@@ -455,6 +455,11 @@ body {
   font-size: 13px;
   color: var(--muted);
   line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .task-meta {
   margin-top: 6px;
@@ -633,6 +638,34 @@ select:focus-visible, textarea:focus-visible {
   color: #dc2626;
 }
 .btn-danger:hover { background: var(--wait-bg); }
+
+/* card detail (view) */
+.view-desc {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.55;
+  white-space: pre-wrap;
+  margin-bottom: 12px;
+}
+.view-dates {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.view-dates svg { width: 13px; height: 13px; flex-shrink: 0; }
+#view-body .task-meta { margin-top: 0; margin-bottom: 4px; }
+.view-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+.view-link:hover { text-decoration: underline; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 600px) {

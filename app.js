@@ -463,6 +463,37 @@
     renderTagOptions();
   }
 
+  /* ---------- card detail (view) ---------- */
+
+  var viewId = null;
+
+  function openView(id) {
+    var c = findCard(id);
+    if (!c) return;
+    viewId = id;
+    document.getElementById("view-title").textContent = c.title;
+
+    var html = "";
+    if (c.desc) html += '<p class="view-desc">' + escapeHtml(c.desc) + "</p>";
+    var range = dateRange(c);
+    if (range) html += '<div class="view-dates">' + CAL_ICON + "<span>" + escapeHtml(range) + "</span></div>";
+    if ((c.tags || []).length) {
+      html += '<div class="task-meta">' + c.tags.map(function (t) {
+        return '<span class="tag neutral">' + escapeHtml(t) + "</span>";
+      }).join("") + "</div>";
+    }
+    if (c.link) html += '<a class="view-link" href="' + escapeHtml(c.link) + '" target="_blank" rel="noopener">Open link →</a>';
+    if (!html) html = '<p class="view-desc" style="color:var(--muted)">No details</p>';
+
+    document.getElementById("view-body").innerHTML = html;
+    document.getElementById("view-overlay").hidden = false;
+  }
+
+  function closeView() {
+    document.getElementById("view-overlay").hidden = true;
+    viewId = null;
+  }
+
   /* ---------- GitHub publish ---------- */
 
   function getToken() {
@@ -635,7 +666,11 @@
         if (collapsedCols[colId]) delete collapsedCols[colId];
         else collapsedCols[colId] = true;
         render();
+        return;
       }
+      if (e.target.closest(".task-name-link")) return; // let the link navigate
+      var card = e.target.closest(".task-card");
+      if (card) { openView(card.getAttribute("data-id")); return; }
     });
 
     board.addEventListener("dragstart", function (e) {
@@ -707,10 +742,23 @@
     document.getElementById("token-save").addEventListener("click", saveToken);
     document.getElementById("token-remove").addEventListener("click", removeToken);
 
+    // card detail (view) controls
+    document.getElementById("view-close").addEventListener("click", closeView);
+    document.getElementById("view-close2").addEventListener("click", closeView);
+    document.getElementById("view-edit").addEventListener("click", function () {
+      var id = viewId;
+      closeView();
+      if (id) openModal(id);
+    });
+    document.getElementById("view-overlay").addEventListener("click", function (e) {
+      if (e.target === this) closeView();
+    });
+
     document.addEventListener("keydown", function (e) {
       if (e.key !== "Escape") return;
       if (!document.getElementById("modal-overlay").hidden) closeModal();
       if (!document.getElementById("token-overlay").hidden) closeTokenModal();
+      if (!document.getElementById("view-overlay").hidden) closeView();
     });
 
     // avatar upload (owner only)
