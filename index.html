@@ -16,176 +16,97 @@
       <h1>Yevhenii Tskhovrebov</h1>
       <div class="subtitle">Senior QA Engineer · <span>On Bench</span></div>
     </div>
-    <div class="updated">Last updated: <b>July 6, 2026</b></div>
+    <div class="updated">Last updated: <b id="last-updated">—</b></div>
   </div>
 
   <div class="summary-row">
     <div class="chip queued">
       <div class="chip-dot"></div>
-      0 To Do
+      <span data-count="todo">0</span> To Do
     </div>
     <div class="chip progress">
       <div class="chip-dot"></div>
-      1 In Progress
+      <span data-count="progress">0</span> In Progress
     </div>
     <div class="chip waiting">
       <div class="chip-dot"></div>
-      1 On Hold
+      <span data-count="hold">0</span> On Hold
     </div>
     <div class="chip done">
       <div class="chip-dot"></div>
-      7 Done
+      <span data-count="done">0</span> Done
     </div>
   </div>
 
-  <div class="board">
-
-    <!-- TO DO -->
-    <div class="board-column">
-      <div class="board-column-header">
-        <div class="board-column-heading">
-          <span class="status-icon queued"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></span>
-          <span class="board-column-title">To Do</span>
-        </div>
-        <span class="board-column-count">0</span>
-      </div>
-      <div class="board-column-body">
-        <div class="empty-state">Nothing queued</div>
-      </div>
-    </div>
-
-    <!-- IN PROGRESS -->
-    <div class="board-column">
-      <div class="board-column-header">
-        <div class="board-column-heading">
-          <span class="status-icon progress"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8V4z"/></svg></span>
-          <span class="board-column-title">In Progress</span>
-        </div>
-        <span class="board-column-count">1</span>
-      </div>
-      <div class="board-column-body">
-        <div class="task-card">
-          <div class="task-body">
-            <div class="task-name">Claude Code in Action</div>
-            <div class="task-desc">Hands-on course covering advanced Claude Code workflows, agent patterns, and real-world automation scenarios. Continuation of the completed theory modules.</div>
-            <div class="task-meta">
-              <span class="tag progress">In Progress</span>
-              <span class="tag neutral">Anthropic Academy</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ON HOLD -->
-    <div class="board-column">
-      <div class="board-column-header">
-        <div class="board-column-heading">
-          <span class="status-icon waiting"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></span>
-          <span class="board-column-title">On Hold</span>
-        </div>
-        <span class="board-column-count">1</span>
-      </div>
-      <div class="board-column-body">
-        <div class="task-card">
-          <div class="task-body">
-            <div class="task-name">AI Community Initiative</div>
-            <div class="task-desc">Contacted the initiative lead. Awaiting task assignment to begin contribution. Ready to start as soon as scope is defined.</div>
-            <div class="task-meta">
-              <span class="tag waiting">Awaiting Task</span>
-              <span class="tag neutral">Internal Initiative</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DONE -->
-    <div class="board-column">
-      <div class="board-column-header">
-        <div class="board-column-heading">
-          <span class="status-icon done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12 9 17 20 6"/></svg></span>
-          <span class="board-column-title">Done</span>
-        </div>
-        <span class="board-column-count">7</span>
-      </div>
-      <div class="board-column-body">
-        <div class="task-card">
-          <div class="task-body">
-            <div class="task-name"><a class="task-name-link" href="https://verify.skilljar.com/c/ue9st7byj8dq" target="_blank" rel="noopener">Claude 101</a></div>
-            <div class="task-meta">
-              <span class="tag done">Done July 6</span>
-              <span class="tag neutral">Anthropic Academy</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="task-card">
-          <div class="task-body">
-            <div class="task-name"><a class="task-name-link" href="https://verify.skilljar.com/c/iwqh6jnffpim" target="_blank" rel="noopener">Claude Code 101</a></div>
-            <div class="task-meta">
-              <span class="tag done">Done July 6</span>
-              <span class="tag neutral">Anthropic Academy</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="task-card">
-          <div class="task-body">
-            <div class="task-name"><a class="task-name-link" href="https://verify.skilljar.com/c/spdpdqbm4bbp" target="_blank" rel="noopener">Intro to MCP</a></div>
-            <div class="task-meta">
-              <span class="tag done">Done July 6</span>
-              <span class="tag neutral">Anthropic Academy</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="task-card">
-          <div class="task-body">
-            <div class="task-name"><a class="task-name-link" href="https://verify.skilljar.com/c/93recc4htcdb" target="_blank" rel="noopener">Introduction to Subagents</a></div>
-            <div class="task-meta">
-              <span class="tag done">Done July 6</span>
-              <span class="tag neutral">Anthropic Academy</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="task-card">
-          <div class="task-body">
-            <div class="task-name"><a class="task-name-link" href="https://verify.skilljar.com/c/qup36p34rpw9" target="_blank" rel="noopener">Introduction to Agent Skills</a></div>
-            <div class="task-meta">
-              <span class="tag done">Done July 6</span>
-              <span class="tag neutral">Anthropic Academy</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="task-card">
-          <div class="task-body">
-            <div class="task-name"><a class="task-name-link" href="https://verify.skilljar.com/c/tr6o33rqc4vz" target="_blank" rel="noopener">Model Context Protocol: Advanced Topics</a></div>
-            <div class="task-meta">
-              <span class="tag done">Done July 6</span>
-              <span class="tag neutral">Anthropic Academy</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="task-card">
-          <div class="task-body">
-            <div class="task-name">CV Update &amp; Preparation</div>
-            <div class="task-desc">Full revision of professional CV — updated project descriptions, skills, and formatting for external positioning.</div>
-            <div class="task-meta">
-              <span class="tag done">Done July 3</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
+  <div class="board" id="board"></div>
 
 </div>
 
+<!-- CARD MODAL -->
+<div class="modal-overlay" id="modal-overlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-header">
+      <h2 id="modal-title">New card</h2>
+      <button type="button" class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+    </div>
+    <form id="card-form" autocomplete="off">
+      <label class="field">
+        <span class="field-label">Title</span>
+        <input type="text" name="title" required>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Description</span>
+        <textarea name="description" rows="3"></textarea>
+      </label>
+
+      <div class="field-row">
+        <label class="field">
+          <span class="field-label">Column</span>
+          <select name="column">
+            <option value="todo">To Do</option>
+            <option value="progress">In Progress</option>
+            <option value="hold">On Hold</option>
+            <option value="done">Done</option>
+          </select>
+        </label>
+        <label class="field">
+          <span class="field-label">Link (optional)</span>
+          <input type="url" name="link" placeholder="https://…">
+        </label>
+      </div>
+
+      <div class="field-row">
+        <label class="field">
+          <span class="field-label">Start date</span>
+          <input type="date" name="start">
+        </label>
+        <label class="field">
+          <span class="field-label">End date</span>
+          <input type="date" name="end">
+        </label>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Tags</span>
+        <div class="tag-options" id="tag-options"></div>
+        <div class="tag-add">
+          <input type="text" id="new-tag-input" placeholder="Add custom tag…">
+          <button type="button" id="add-tag-btn" class="btn-secondary">Add</button>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-danger" id="delete-card-btn" hidden>Delete</button>
+        <div class="modal-actions-spacer"></div>
+        <button type="button" class="btn-secondary" id="cancel-btn">Cancel</button>
+        <button type="submit" class="btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="app.js"></script>
 <script src="theme-toggle.js"></script>
 </body>
 </html>
