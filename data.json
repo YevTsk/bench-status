@@ -30,6 +30,18 @@
       ]
     },
     {
+      "id": "cmralxr6l9c9o",
+      "column": "todo",
+      "title": "CV-Based Questions",
+      "desc": "Drafted a structured set of likely interview questions across all CV sections (projects, AI-enabled workflow, leadership, tech stack) to prepare talking points ahead of upcoming interviews.",
+      "start": "",
+      "end": "",
+      "link": "",
+      "tags": [
+        "CV"
+      ]
+    },
+    {
       "id": "seed-cca",
       "column": "progress",
       "title": "Claude Code in Action",
@@ -157,18 +169,6 @@
       "desc": "Full revision of professional CV — updated project descriptions, skills, and formatting for external positioning.",
       "start": "2026-07-02",
       "end": "2026-07-03",
-      "link": "",
-      "tags": [
-        "CV"
-      ]
-    },
-    {
-      "id": "cmralxr6l9c9o",
-      "column": "todo",
-      "title": "CV-Based Questions",
-      "desc": "Drafted a structured set of likely interview questions across all CV sections (projects, AI-enabled workflow, leadership, tech stack) to prepare talking points ahead of upcoming interviews.",
-      "start": "",
-      "end": "",
       "link": "",
       "tags": [
         "CV"
