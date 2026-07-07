@@ -320,10 +320,14 @@ body {
   letter-spacing: 0.08em;
   color: var(--muted);
 }
-.board-column[data-col="todo"] .board-column-title     { color: var(--queued-text); }
-.board-column[data-col="progress"] .board-column-title { color: var(--progress-text); }
-.board-column[data-col="hold"] .board-column-title     { color: var(--wait-text); }
-.board-column[data-col="done"] .board-column-title     { color: var(--done-text); }
+.board-column[data-col="todo"] .board-column-title,
+.board-column[data-col="todo"] .board-column-count     { color: var(--queued-text); }
+.board-column[data-col="progress"] .board-column-title,
+.board-column[data-col="progress"] .board-column-count { color: var(--progress-text); }
+.board-column[data-col="hold"] .board-column-title,
+.board-column[data-col="hold"] .board-column-count     { color: var(--wait-text); }
+.board-column[data-col="done"] .board-column-title,
+.board-column[data-col="done"] .board-column-count     { color: var(--done-text); }
 .board-column-tools {
   display: flex;
   align-items: center;
