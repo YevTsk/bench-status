@@ -1,0 +1,92 @@
+[
+  {
+    "id": "seed-cca",
+    "column": "progress",
+    "title": "Claude Code in Action",
+    "desc": "Hands-on course covering advanced Claude Code workflows, agent patterns, and real-world automation scenarios. Continuation of the completed theory modules.",
+    "start": "",
+    "end": "",
+    "link": "",
+    "tags": ["Anthropic Academy"]
+  },
+  {
+    "id": "seed-community",
+    "column": "hold",
+    "title": "AI Community Initiative",
+    "desc": "Contacted the initiative lead. Awaiting task assignment to begin contribution. Ready to start as soon as scope is defined.",
+    "start": "",
+    "end": "",
+    "link": "",
+    "tags": ["Internal Initiative"]
+  },
+  {
+    "id": "seed-c101",
+    "column": "done",
+    "title": "Claude 101",
+    "desc": "",
+    "start": "",
+    "end": "2026-07-06",
+    "link": "https://verify.skilljar.com/c/ue9st7byj8dq",
+    "tags": ["Anthropic Academy"]
+  },
+  {
+    "id": "seed-cc101",
+    "column": "done",
+    "title": "Claude Code 101",
+    "desc": "",
+    "start": "",
+    "end": "2026-07-06",
+    "link": "https://verify.skilljar.com/c/iwqh6jnffpim",
+    "tags": ["Anthropic Academy"]
+  },
+  {
+    "id": "seed-mcp",
+    "column": "done",
+    "title": "Intro to MCP",
+    "desc": "",
+    "start": "",
+    "end": "2026-07-06",
+    "link": "https://verify.skilljar.com/c/spdpdqbm4bbp",
+    "tags": ["Anthropic Academy"]
+  },
+  {
+    "id": "seed-subagents",
+    "column": "done",
+    "title": "Introduction to Subagents",
+    "desc": "",
+    "start": "",
+    "end": "2026-07-06",
+    "link": "https://verify.skilljar.com/c/93recc4htcdb",
+    "tags": ["Anthropic Academy"]
+  },
+  {
+    "id": "seed-skills",
+    "column": "done",
+    "title": "Introduction to Agent Skills",
+    "desc": "",
+    "start": "",
+    "end": "2026-07-06",
+    "link": "https://verify.skilljar.com/c/qup36p34rpw9",
+    "tags": ["Anthropic Academy"]
+  },
+  {
+    "id": "seed-mcp-adv",
+    "column": "done",
+    "title": "Model Context Protocol: Advanced Topics",
+    "desc": "",
+    "start": "",
+    "end": "2026-07-06",
+    "link": "https://verify.skilljar.com/c/tr6o33rqc4vz",
+    "tags": ["Anthropic Academy"]
+  },
+  {
+    "id": "seed-cv",
+    "column": "done",
+    "title": "CV Update & Preparation",
+    "desc": "Full revision of professional CV — updated project descriptions, skills, and formatting for external positioning.",
+    "start": "",
+    "end": "2026-07-03",
+    "link": "",
+    "tags": []
+  }
+]

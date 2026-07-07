@@ -38,6 +38,12 @@
     </div>
   </div>
 
+  <div class="board-toolbar">
+    <span class="save-status" id="save-status"></span>
+    <button type="button" class="btn-secondary" id="token-btn">Connect GitHub</button>
+    <button type="button" class="btn-primary" id="save-btn" hidden>Save</button>
+  </div>
+
   <div class="board" id="board"></div>
 
 </div>
@@ -103,6 +109,28 @@
         <button type="submit" class="btn-primary">Save</button>
       </div>
     </form>
+  </div>
+</div>
+
+<!-- GITHUB TOKEN MODAL -->
+<div class="modal-overlay" id="token-overlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="token-title">
+    <div class="modal-header">
+      <h2 id="token-title">GitHub access</h2>
+      <button type="button" class="modal-close" id="token-close" aria-label="Close">&times;</button>
+    </div>
+    <p class="modal-note">Введите fine-grained Personal Access Token с правом <b>Contents: Read and write</b> на репозиторий <b>bench-status</b>. Токен хранится только в этом браузере (localStorage) и не попадает в репозиторий.</p>
+    <p class="modal-note"><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Создать токен →</a></p>
+    <label class="field">
+      <span class="field-label">Token</span>
+      <input type="password" id="token-input" placeholder="github_pat_…" autocomplete="off">
+    </label>
+    <div class="modal-actions">
+      <button type="button" class="btn-danger" id="token-remove" hidden>Remove</button>
+      <div class="modal-actions-spacer"></div>
+      <button type="button" class="btn-secondary" id="token-cancel">Cancel</button>
+      <button type="button" class="btn-primary" id="token-save">Save token</button>
+    </div>
   </div>
 </div>
 

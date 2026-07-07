@@ -3,6 +3,8 @@
 
   var STORE_KEY = "bench-cards";
   var TAGS_KEY = "bench-tags";
+  var TOKEN_KEY = "gh-token";
+  var GH = { owner: "YevTsk", repo: "bench-status", branch: "main", path: "data.json" };
 
   var COLUMNS = [
     { id: "todo", title: "To Do", icon: "queued", chip: "queued" },
@@ -123,10 +125,13 @@
 
   /* ---------- state ---------- */
 
+  var stored = readStore();
   var state = {
-    cards: loadCards(),
-    tags: loadTags()
+    cards: stored ? stored.cards : SEED.map(clone),
+    tags: []
   };
+  var dirty = stored ? stored.dirty : false;
+  state.tags = loadTags();
 
   // which columns are collapsed (accordion, mobile only). Done starts collapsed.
   var collapsedCols = { done: true };
@@ -137,15 +142,16 @@
     return window.matchMedia("(max-width: 600px)").matches;
   }
 
-  function loadCards() {
+  function readStore() {
     try {
       var raw = localStorage.getItem(STORE_KEY);
       if (raw) {
         var parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) return parsed;
+        if (Array.isArray(parsed)) return { cards: parsed, dirty: true };
+        if (parsed && Array.isArray(parsed.cards)) return { cards: parsed.cards, dirty: !!parsed.dirty };
       }
     } catch (e) {}
-    return SEED.map(function (c) { return clone(c); });
+    return null;
   }
 
   function loadTags() {
@@ -166,8 +172,16 @@
     return merged;
   }
 
-  function saveCards() {
-    try { localStorage.setItem(STORE_KEY, JSON.stringify(state.cards)); } catch (e) {}
+  function persist() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify({ cards: state.cards, dirty: dirty })); } catch (e) {}
+  }
+  function saveLocal(flag) {
+    dirty = !!flag;
+    persist();
+    updateSaveUI();
+    if (flag) {
+      setStatus(getToken() ? "Несохранённые изменения" : "Несохранённые изменения — подключите GitHub");
+    }
   }
   function saveTags() {
     try { localStorage.setItem(TAGS_KEY, JSON.stringify(state.tags)); } catch (e) {}
@@ -370,7 +384,7 @@
         tags: tags
       });
     }
-    saveCards();
+    saveLocal(true);
     render();
     closeModal();
   }
@@ -378,7 +392,7 @@
   function deleteCurrent() {
     if (!editingId) return;
     state.cards = state.cards.filter(function (c) { return c.id !== editingId; });
-    saveCards();
+    saveLocal(true);
     render();
     closeModal();
   }
@@ -394,6 +408,113 @@
     selectedTags[val] = true;
     input.value = "";
     renderTagOptions();
+  }
+
+  /* ---------- GitHub publish ---------- */
+
+  function getToken() {
+    try { return localStorage.getItem(TOKEN_KEY) || ""; } catch (e) { return ""; }
+  }
+
+  function setStatus(msg, isErr) {
+    var el = document.getElementById("save-status");
+    if (!el) return;
+    el.textContent = msg || "";
+    el.classList.toggle("error", !!isErr);
+  }
+
+  function updateSaveUI() {
+    var hasToken = !!getToken();
+    var saveBtn = document.getElementById("save-btn");
+    var tokenBtn = document.getElementById("token-btn");
+    if (saveBtn) saveBtn.hidden = !hasToken;
+    if (tokenBtn) tokenBtn.textContent = hasToken ? "GitHub ✓" : "Connect GitHub";
+  }
+
+  function b64(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+
+  function ghHeaders(token) {
+    return {
+      "Authorization": "Bearer " + token,
+      "Accept": "application/vnd.github+json",
+      "Content-Type": "application/json",
+      "X-GitHub-Api-Version": "2022-11-28"
+    };
+  }
+
+  function fetchPublished() {
+    return fetch(GH.path, { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (Array.isArray(j)) return j;
+        if (j && Array.isArray(j.cards)) return j.cards;
+        return null;
+      })
+      .catch(function () { return null; });
+  }
+
+  function ghSave() {
+    var token = getToken();
+    if (!token) { openTokenModal(); return; }
+    setStatus("Сохранение…");
+    var api = "https://api.github.com/repos/" + GH.owner + "/" + GH.repo + "/contents/" + GH.path;
+    var content = b64(JSON.stringify(state.cards, null, 2));
+
+    fetch(api + "?ref=" + GH.branch, { headers: ghHeaders(token), cache: "no-store" })
+      .then(function (r) {
+        if (r.status === 200) return r.json();
+        if (r.status === 404) return null;
+        if (r.status === 401) throw new Error("неверный или просроченный токен");
+        throw new Error("HTTP " + r.status);
+      })
+      .then(function (existing) {
+        var body = {
+          message: "Update board (" + new Date().toISOString() + ")",
+          content: content,
+          branch: GH.branch
+        };
+        if (existing && existing.sha) body.sha = existing.sha;
+        return fetch(api, { method: "PUT", headers: ghHeaders(token), body: JSON.stringify(body) });
+      })
+      .then(function (r) {
+        if (!r.ok) {
+          return r.json().then(function (e) { throw new Error(e.message || ("HTTP " + r.status)); });
+        }
+        return r.json();
+      })
+      .then(function () {
+        saveLocal(false);
+        setStatus("Сохранено ✓ — обновится по ссылке через ~1 мин");
+      })
+      .catch(function (err) {
+        setStatus("Ошибка: " + err.message, true);
+      });
+  }
+
+  function openTokenModal() {
+    document.getElementById("token-input").value = getToken();
+    document.getElementById("token-remove").hidden = !getToken();
+    document.getElementById("token-overlay").hidden = false;
+    setTimeout(function () { document.getElementById("token-input").focus(); }, 30);
+  }
+  function closeTokenModal() {
+    document.getElementById("token-overlay").hidden = true;
+  }
+  function saveToken() {
+    var val = document.getElementById("token-input").value.trim();
+    try {
+      if (val) localStorage.setItem(TOKEN_KEY, val);
+      else localStorage.removeItem(TOKEN_KEY);
+    } catch (e) {}
+    updateSaveUI();
+    closeTokenModal();
+  }
+  function removeToken() {
+    try { localStorage.removeItem(TOKEN_KEY); } catch (e) {}
+    updateSaveUI();
+    closeTokenModal();
   }
 
   /* ---------- drag & drop ---------- */
@@ -492,7 +613,7 @@
       e.preventDefault();
       body.classList.remove("drop-target");
       rebuildFromDOM();
-      saveCards();
+      saveLocal(true);
       render();
     });
 
@@ -515,8 +636,36 @@
     document.getElementById("modal-overlay").addEventListener("click", function (e) {
       if (e.target === this) closeModal();
     });
+
+    // publish controls
+    document.getElementById("token-btn").addEventListener("click", openTokenModal);
+    document.getElementById("save-btn").addEventListener("click", ghSave);
+    document.getElementById("token-close").addEventListener("click", closeTokenModal);
+    document.getElementById("token-cancel").addEventListener("click", closeTokenModal);
+    document.getElementById("token-save").addEventListener("click", saveToken);
+    document.getElementById("token-remove").addEventListener("click", removeToken);
+    document.getElementById("token-overlay").addEventListener("click", function (e) {
+      if (e.target === this) closeTokenModal();
+    });
+
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !document.getElementById("modal-overlay").hidden) closeModal();
+      if (e.key !== "Escape") return;
+      if (!document.getElementById("modal-overlay").hidden) closeModal();
+      if (!document.getElementById("token-overlay").hidden) closeTokenModal();
+    });
+
+    updateSaveUI();
+    if (dirty) setStatus(getToken() ? "Несохранённые изменения" : "Несохранённые изменения — подключите GitHub");
+
+    // adopt published data.json unless there are local unsaved edits
+    fetchPublished().then(function (cards) {
+      if (cards && !dirty) {
+        state.cards = cards;
+        state.tags = loadTags();
+        saveLocal(false);
+        setStatus("");
+        render();
+      }
     });
   }
 
