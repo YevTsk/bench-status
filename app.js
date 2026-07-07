@@ -428,8 +428,11 @@
     var hasToken = !!getToken();
     var saveBtn = document.getElementById("save-btn");
     var tokenBtn = document.getElementById("token-btn");
-    if (saveBtn) saveBtn.hidden = !hasToken;
-    if (tokenBtn) tokenBtn.textContent = hasToken ? "GitHub ✓" : "Connect GitHub";
+    if (saveBtn) saveBtn.disabled = !dirty;
+    if (tokenBtn) {
+      tokenBtn.classList.toggle("connected", hasToken);
+      tokenBtn.title = hasToken ? "GitHub connected" : "Connect GitHub";
+    }
   }
 
   function b64(str) {
