@@ -144,6 +144,10 @@
     return window.matchMedia("(max-width: 600px)").matches;
   }
 
+  function isOwner() {
+    return !!getToken();
+  }
+
   function readStore() {
     try {
       var raw = localStorage.getItem(STORE_KEY);
@@ -288,7 +292,7 @@
       ? cards.map(cardHtml).join("")
       : '<div class="empty-state">Clear for now</div>';
 
-    var addBtn = col.id === "todo"
+    var addBtn = (col.id === "todo" && isOwner())
       ? '<button class="card-add" data-col="' + col.id + '" title="Add card" aria-label="Add card">+</button>'
       : "";
 
@@ -331,15 +335,20 @@
         }).join("") + "</div>"
       : "";
 
+    var owner = isOwner();
+    var editBtn = owner
+      ? '<button class="card-edit" data-id="' + escapeHtml(card.id) + '" title="Edit" aria-label="Edit card">' +
+        '    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>' +
+        '  </button>'
+      : "";
+
     return '' +
-      '<article class="task-card" draggable="true" data-id="' + escapeHtml(card.id) + '">' +
+      '<article class="task-card" draggable="' + owner + '" data-id="' + escapeHtml(card.id) + '">' +
       '  <div class="task-body">' +
       '    <div class="task-name">' + titleInner + '</div>' +
       desc + dates + tags +
       '  </div>' +
-      '  <button class="card-edit" data-id="' + escapeHtml(card.id) + '" title="Edit" aria-label="Edit card">' +
-      '    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>' +
-      '  </button>' +
+      editBtn +
       '</article>';
   }
 
@@ -486,6 +495,7 @@
     if (!html) html = '<p class="view-desc" style="color:var(--muted)">No details</p>';
 
     document.getElementById("view-body").innerHTML = html;
+    document.getElementById("view-edit").hidden = !isOwner();
     document.getElementById("view-overlay").hidden = false;
   }
 
@@ -511,7 +521,7 @@
     var hasToken = !!getToken();
     var saveBtn = document.getElementById("save-btn");
     var tokenBtn = document.getElementById("token-btn");
-    if (saveBtn) saveBtn.disabled = !dirty;
+    if (saveBtn) { saveBtn.hidden = !hasToken; saveBtn.disabled = !dirty; }
     if (tokenBtn) {
       tokenBtn.classList.toggle("connected", hasToken);
       tokenBtn.title = hasToken ? "GitHub connected" : "Connect GitHub";
@@ -606,11 +616,15 @@
       else localStorage.removeItem(TOKEN_KEY);
     } catch (e) {}
     updateSaveUI();
+    renderProfile();
+    render();
     closeTokenModal();
   }
   function removeToken() {
     try { localStorage.removeItem(TOKEN_KEY); } catch (e) {}
     updateSaveUI();
+    renderProfile();
+    render();
     closeTokenModal();
   }
 
@@ -657,9 +671,9 @@
 
     board.addEventListener("click", function (e) {
       var add = e.target.closest(".card-add");
-      if (add) { openModal(null, add.getAttribute("data-col")); return; }
+      if (add) { if (isOwner()) openModal(null, add.getAttribute("data-col")); return; }
       var edit = e.target.closest(".card-edit");
-      if (edit) { openModal(edit.getAttribute("data-id")); return; }
+      if (edit) { if (isOwner()) openModal(edit.getAttribute("data-id")); return; }
       var header = e.target.closest(".board-column-header");
       if (header && isMobile()) {
         var colId = header.parentNode.getAttribute("data-col");
@@ -674,6 +688,7 @@
     });
 
     board.addEventListener("dragstart", function (e) {
+      if (!isOwner()) { e.preventDefault(); return; }
       var card = e.target.closest(".task-card");
       if (!card) return;
       dragEl = card;
