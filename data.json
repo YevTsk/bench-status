@@ -48,8 +48,7 @@
       "end": "2026-07-06",
       "link": "https://verify.skilljar.com/c/tr6o33rqc4vz",
       "tags": [
-        "Anthropic Academy",
-        "Certification"
+        "Anthropic Academy"
       ]
     },
     {
@@ -61,8 +60,7 @@
       "end": "2026-07-06",
       "link": "https://verify.skilljar.com/c/qup36p34rpw9",
       "tags": [
-        "Anthropic Academy",
-        "Certification"
+        "Anthropic Academy"
       ]
     },
     {
@@ -74,8 +72,7 @@
       "end": "2026-07-06",
       "link": "https://verify.skilljar.com/c/spdpdqbm4bbp",
       "tags": [
-        "Anthropic Academy",
-        "Certification"
+        "Anthropic Academy"
       ]
     },
     {
@@ -87,8 +84,7 @@
       "end": "2026-07-06",
       "link": "https://verify.skilljar.com/c/93recc4htcdb",
       "tags": [
-        "Anthropic Academy",
-        "Certification"
+        "Anthropic Academy"
       ]
     },
     {
@@ -100,8 +96,7 @@
       "end": "2026-07-06",
       "link": "https://verify.skilljar.com/c/ue9st7byj8dq",
       "tags": [
-        "Anthropic Academy",
-        "Certification"
+        "Anthropic Academy"
       ]
     },
     {
@@ -113,8 +108,7 @@
       "end": "2026-07-06",
       "link": "https://verify.skilljar.com/c/iwqh6jnffpim",
       "tags": [
-        "Anthropic Academy",
-        "Certification"
+        "Anthropic Academy"
       ]
     },
     {
@@ -125,22 +119,17 @@
       "start": "2026-07-02",
       "end": "2026-07-03",
       "link": "",
-      "tags": [
-        "CV"
-      ]
+      "tags": []
     },
     {
       "id": "cmradq96ss13i",
       "column": "todo",
-      "title": "Test Coverage Analysis",
-      "desc": "Assessing the need for a coverage script and its visual representation across projects.\nThe value of such tooling is hard to justify up front: coverage demand varies from project to project, metrics differ, and teams follow different approaches. There's no single number that fits everyone.\n\nAs a starting point, we could implement a basic API snapshot  a lightweight baseline view of coverage that any project can adopt without committing to a heavier, one-size-fits-all solution.",
+      "title": "Test",
+      "desc": "Test",
       "start": "2026-07-07",
       "end": "",
       "link": "",
-      "tags": [
-        "Self-development",
-        "AI Tooling"
-      ]
+      "tags": []
     }
   ]
 }
