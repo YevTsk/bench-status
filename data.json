@@ -1,130 +1,135 @@
-[
-  {
-    "id": "cmrabeycjknbn",
-    "column": "todo",
-    "title": "Claude Refactor",
-    "desc": "Refactoring existing hooks / skills / md / agents / \nto use outside Axys",
-    "start": "2026-07-07",
-    "end": "2026-07-08",
-    "link": "",
-    "tags": [
-      "AI Tooling"
-    ]
+{
+  "profile": {
+    "avatar": "data:image/jpeg;base64,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"
   },
-  {
-    "id": "seed-cca",
-    "column": "progress",
-    "title": "Claude Code in Action",
-    "desc": "Hands-on course covering advanced Claude Code workflows, agent patterns, and real-world automation scenarios. Continuation of the completed theory modules.",
-    "start": "2026-07-06",
-    "end": "2026-07-07",
-    "link": "",
-    "tags": [
-      "Anthropic Academy"
-    ]
-  },
-  {
-    "id": "seed-community",
-    "column": "hold",
-    "title": "AI Community Initiative",
-    "desc": "Contacted the initiative lead. Awaiting task assignment to begin contribution. Ready to start as soon as scope is defined.",
-    "start": "2026-07-06",
-    "end": "",
-    "link": "",
-    "tags": [
-      "Internal Initiative"
-    ]
-  },
-  {
-    "id": "seed-mcp-adv",
-    "column": "done",
-    "title": "Model Context Protocol: Advanced Topics",
-    "desc": "",
-    "start": "",
-    "end": "2026-07-06",
-    "link": "https://verify.skilljar.com/c/tr6o33rqc4vz",
-    "tags": [
-      "Anthropic Academy"
-    ]
-  },
-  {
-    "id": "seed-skills",
-    "column": "done",
-    "title": "Introduction to Agent Skills",
-    "desc": "",
-    "start": "",
-    "end": "2026-07-06",
-    "link": "https://verify.skilljar.com/c/qup36p34rpw9",
-    "tags": [
-      "Anthropic Academy"
-    ]
-  },
-  {
-    "id": "seed-mcp",
-    "column": "done",
-    "title": "Intro to MCP",
-    "desc": "",
-    "start": "",
-    "end": "2026-07-06",
-    "link": "https://verify.skilljar.com/c/spdpdqbm4bbp",
-    "tags": [
-      "Anthropic Academy"
-    ]
-  },
-  {
-    "id": "seed-subagents",
-    "column": "done",
-    "title": "Introduction to Subagents",
-    "desc": "",
-    "start": "",
-    "end": "2026-07-06",
-    "link": "https://verify.skilljar.com/c/93recc4htcdb",
-    "tags": [
-      "Anthropic Academy"
-    ]
-  },
-  {
-    "id": "seed-c101",
-    "column": "done",
-    "title": "Claude 101",
-    "desc": "",
-    "start": "",
-    "end": "2026-07-06",
-    "link": "https://verify.skilljar.com/c/ue9st7byj8dq",
-    "tags": [
-      "Anthropic Academy"
-    ]
-  },
-  {
-    "id": "seed-cc101",
-    "column": "done",
-    "title": "Claude Code 101",
-    "desc": "",
-    "start": "",
-    "end": "2026-07-06",
-    "link": "https://verify.skilljar.com/c/iwqh6jnffpim",
-    "tags": [
-      "Anthropic Academy"
-    ]
-  },
-  {
-    "id": "seed-cv",
-    "column": "done",
-    "title": "CV Update & Preparation",
-    "desc": "Full revision of professional CV — updated project descriptions, skills, and formatting for external positioning.",
-    "start": "2026-07-02",
-    "end": "2026-07-03",
-    "link": "",
-    "tags": []
-  },
-  {
-    "id": "cmradq96ss13i",
-    "column": "todo",
-    "title": "Test",
-    "desc": "Test",
-    "start": "2026-07-07",
-    "end": "",
-    "link": "",
-    "tags": []
-  }
-]
+  "cards": [
+    {
+      "id": "cmrabeycjknbn",
+      "column": "todo",
+      "title": "Claude Refactor",
+      "desc": "Refactoring existing hooks / skills / md / agents / \nto use outside Axys",
+      "start": "2026-07-07",
+      "end": "2026-07-08",
+      "link": "",
+      "tags": [
+        "AI Tooling"
+      ]
+    },
+    {
+      "id": "seed-cca",
+      "column": "progress",
+      "title": "Claude Code in Action",
+      "desc": "Hands-on course covering advanced Claude Code workflows, agent patterns, and real-world automation scenarios. Continuation of the completed theory modules.",
+      "start": "2026-07-06",
+      "end": "2026-07-07",
+      "link": "",
+      "tags": [
+        "Anthropic Academy"
+      ]
+    },
+    {
+      "id": "seed-community",
+      "column": "hold",
+      "title": "AI Community Initiative",
+      "desc": "Contacted the initiative lead. Awaiting task assignment to begin contribution. Ready to start as soon as scope is defined.",
+      "start": "2026-07-06",
+      "end": "",
+      "link": "",
+      "tags": [
+        "Internal Initiative"
+      ]
+    },
+    {
+      "id": "seed-mcp-adv",
+      "column": "done",
+      "title": "Model Context Protocol: Advanced Topics",
+      "desc": "",
+      "start": "",
+      "end": "2026-07-06",
+      "link": "https://verify.skilljar.com/c/tr6o33rqc4vz",
+      "tags": [
+        "Anthropic Academy"
+      ]
+    },
+    {
+      "id": "seed-skills",
+      "column": "done",
+      "title": "Introduction to Agent Skills",
+      "desc": "",
+      "start": "",
+      "end": "2026-07-06",
+      "link": "https://verify.skilljar.com/c/qup36p34rpw9",
+      "tags": [
+        "Anthropic Academy"
+      ]
+    },
+    {
+      "id": "seed-mcp",
+      "column": "done",
+      "title": "Intro to MCP",
+      "desc": "",
+      "start": "",
+      "end": "2026-07-06",
+      "link": "https://verify.skilljar.com/c/spdpdqbm4bbp",
+      "tags": [
+        "Anthropic Academy"
+      ]
+    },
+    {
+      "id": "seed-subagents",
+      "column": "done",
+      "title": "Introduction to Subagents",
+      "desc": "",
+      "start": "",
+      "end": "2026-07-06",
+      "link": "https://verify.skilljar.com/c/93recc4htcdb",
+      "tags": [
+        "Anthropic Academy"
+      ]
+    },
+    {
+      "id": "seed-c101",
+      "column": "done",
+      "title": "Claude 101",
+      "desc": "",
+      "start": "",
+      "end": "2026-07-06",
+      "link": "https://verify.skilljar.com/c/ue9st7byj8dq",
+      "tags": [
+        "Anthropic Academy"
+      ]
+    },
+    {
+      "id": "seed-cc101",
+      "column": "done",
+      "title": "Claude Code 101",
+      "desc": "",
+      "start": "",
+      "end": "2026-07-06",
+      "link": "https://verify.skilljar.com/c/iwqh6jnffpim",
+      "tags": [
+        "Anthropic Academy"
+      ]
+    },
+    {
+      "id": "seed-cv",
+      "column": "done",
+      "title": "CV Update & Preparation",
+      "desc": "Full revision of professional CV — updated project descriptions, skills, and formatting for external positioning.",
+      "start": "2026-07-02",
+      "end": "2026-07-03",
+      "link": "",
+      "tags": []
+    },
+    {
+      "id": "cmradq96ss13i",
+      "column": "todo",
+      "title": "Test",
+      "desc": "Test",
+      "start": "2026-07-07",
+      "end": "",
+      "link": "",
+      "tags": []
+    }
+  ]
+}
