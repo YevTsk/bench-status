@@ -633,10 +633,6 @@
       if (selectedTags[t]) delete selectedTags[t]; else selectedTags[t] = true;
       opt.classList.toggle("selected");
     });
-    document.getElementById("modal-overlay").addEventListener("click", function (e) {
-      if (e.target === this) closeModal();
-    });
-
     // publish controls
     document.getElementById("token-btn").addEventListener("click", openTokenModal);
     document.getElementById("save-btn").addEventListener("click", ghSave);
@@ -644,9 +640,6 @@
     document.getElementById("token-cancel").addEventListener("click", closeTokenModal);
     document.getElementById("token-save").addEventListener("click", saveToken);
     document.getElementById("token-remove").addEventListener("click", removeToken);
-    document.getElementById("token-overlay").addEventListener("click", function (e) {
-      if (e.target === this) closeTokenModal();
-    });
 
     document.addEventListener("keydown", function (e) {
       if (e.key !== "Escape") return;
