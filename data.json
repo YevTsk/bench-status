@@ -16,6 +16,19 @@
       ]
     },
     {
+      "id": "cmradq96ss13i",
+      "column": "todo",
+      "title": "Test Coverage",
+      "desc": "Assessing the need for a coverage script and its visual representation across projects.\n  The value of such tooling is hard to justify up front: coverage demand varies from project to project, metrics differ, and teams follow different approaches. There's no single number that fits everyone.\n\nAs a starting point, we could implement a basic API snapshot - a lightweight baseline view of coverage that any project can adopt without committing to a heavier, one-size-fits-all solution.",
+      "start": "2026-07-07",
+      "end": "",
+      "link": "",
+      "tags": [
+        "Self-development",
+        "AI Tooling"
+      ]
+    },
+    {
       "id": "seed-cca",
       "column": "progress",
       "title": "Claude Code in Action",
@@ -37,6 +50,19 @@
       "link": "",
       "tags": [
         "Internal Initiative"
+      ]
+    },
+    {
+      "id": "cmrakpihyycu8",
+      "column": "done",
+      "title": "Personal Bench Status Board",
+      "desc": "A live board that transparently reflects my current activity while on the bench. In one place it shows what I'm working on now, what's on hold, what's planned, and what's already completed — including finished courses and certifications.\n\nThe goal is to make my workload and upskilling visible to management without manual status-chasing: it's clear what I'm engaged in, how loaded I am, and when I'll be free for a new assignment. The board updates in real time and always shows the current picture.",
+      "start": "2026-07-06",
+      "end": "2026-07-07",
+      "link": "",
+      "tags": [
+        "Self-development",
+        "AI Tooling"
       ]
     },
     {
@@ -112,22 +138,24 @@
       ]
     },
     {
+      "id": "cmrakzyabkyn1",
+      "column": "done",
+      "title": "AI Literacy - additional practice",
+      "desc": "Working through the extra hands-on exercises of the AI Literacy course: reinforcing core principles of working with AI tools",
+      "start": "2026-07-03",
+      "end": "2026-07-03",
+      "link": "",
+      "tags": [
+        "Self-development"
+      ]
+    },
+    {
       "id": "seed-cv",
       "column": "done",
       "title": "CV Update & Preparation",
       "desc": "Full revision of professional CV — updated project descriptions, skills, and formatting for external positioning.",
       "start": "2026-07-02",
       "end": "2026-07-03",
-      "link": "",
-      "tags": []
-    },
-    {
-      "id": "cmradq96ss13i",
-      "column": "todo",
-      "title": "Test Coverage",
-      "desc": "Assessing the need for a coverage script and its visual representation across projects.\n  The value of such tooling is hard to justify up front: coverage demand varies from project to project, metrics differ, and teams follow different approaches. There's no single number that fits everyone.\n\nAs a starting point, we could implement a basic API snapshot - a lightweight baseline view of coverage that any project can adopt without committing to a heavier, one-size-fits-all solution.",
-      "start": "2026-07-07",
-      "end": "",
       "link": "",
       "tags": []
     }
