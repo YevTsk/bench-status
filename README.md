@@ -28,6 +28,7 @@ theme-init.js       applies saved theme before first paint (avoids flash)
 theme-toggle.js     the light/dark toggle button
 data.json           published board content (cards + profile) — committed by Save
 favicon.svg / og-image.svg   branding assets
+automation/         Playwright + TypeScript end-to-end tests (see Testing below)
 ```
 
 `store.js` → `render.js` → `app.js` is also the script load order in `index.html`; each attaches itself to a shared `window.Bench` namespace instead of using ES module imports, so the page still works when opened directly from disk (`file://`), where module scripts are blocked by CORS.
@@ -43,3 +44,16 @@ On `file://`, fetching the local `data.json` is blocked by the browser, so the a
 ## Deploying
 
 Push to `main` — GitHub Pages rebuilds automatically (usually within ~1 minute). No CI/CD pipeline.
+
+## Testing
+
+All testing lives in [`automation/`](automation) — a self-contained Playwright + TypeScript project (Page Object Model + fixtures), kept separate from the zero-build-step site itself. End-to-end tests run against a local static server, never against the live site or the real GitHub API. No CI wiring — run locally before pushing UI/logic changes.
+
+```bash
+cd automation
+npm install
+npx playwright install chromium   # first time only
+npm test                          # or: npm run testui (Playwright UI mode)
+```
+
+See [`automation/README.md`](automation/README.md) for the full folder breakdown, mocking strategy, and how to add a new test.
