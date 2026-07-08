@@ -42,6 +42,19 @@
       ]
     },
     {
+      "id": "cmrc58hmezub0",
+      "column": "progress",
+      "title": "Add Automation TCs on Bench-Status board",
+      "desc": "",
+      "start": "2026-07-08",
+      "end": "",
+      "link": "",
+      "tags": [
+        "Self-development",
+        "AI Tooling"
+      ]
+    },
+    {
       "id": "cmrabeycjknbn",
       "column": "progress",
       "title": "Claude Refactor",
