@@ -30,19 +30,6 @@
       ]
     },
     {
-      "id": "cmrabeycjknbn",
-      "column": "todo",
-      "title": "Claude Refactor",
-      "desc": "Refactoring existing hooks / skills / md / agents / \nto use outside Axys",
-      "start": "2026-07-07",
-      "end": "2026-07-08",
-      "link": "",
-      "tags": [
-        "Self-development",
-        "AI Tooling"
-      ]
-    },
-    {
       "id": "cmralxr6l9c9o",
       "column": "todo",
       "title": "CV-Based Questions",
@@ -52,6 +39,19 @@
       "link": "",
       "tags": [
         "CV"
+      ]
+    },
+    {
+      "id": "cmrabeycjknbn",
+      "column": "progress",
+      "title": "Claude Refactor",
+      "desc": "Refactoring existing hooks / skills / md / agents / \nto use outside Axys",
+      "start": "2026-07-07",
+      "end": "2026-07-08",
+      "link": "",
+      "tags": [
+        "Self-development",
+        "AI Tooling"
       ]
     },
     {
