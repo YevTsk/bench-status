@@ -55,18 +55,6 @@
       ]
     },
     {
-      "id": "seed-cca",
-      "column": "progress",
-      "title": "Claude Code in Action",
-      "desc": "Hands-on course covering advanced Claude Code workflows, agent patterns, and real-world automation scenarios. Continuation of the completed theory modules.",
-      "start": "2026-07-06",
-      "end": "2026-07-07",
-      "link": "https://verify.skilljar.com/c/wrefwwgz9na7",
-      "tags": [
-        "Anthropic Academy"
-      ]
-    },
-    {
       "id": "seed-community",
       "column": "hold",
       "title": "AI Community Initiative",
@@ -76,6 +64,18 @@
       "link": "",
       "tags": [
         "Internal Initiative"
+      ]
+    },
+    {
+      "id": "seed-cca",
+      "column": "done",
+      "title": "Claude Code in Action",
+      "desc": "Hands-on course covering advanced Claude Code workflows, agent patterns, and real-world automation scenarios. Continuation of the completed theory modules.",
+      "start": "2026-07-06",
+      "end": "2026-07-08",
+      "link": "https://verify.skilljar.com/c/wrefwwgz9na7",
+      "tags": [
+        "Anthropic Academy"
       ]
     },
     {
