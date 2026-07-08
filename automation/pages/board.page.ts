@@ -14,7 +14,11 @@ export class BoardPage {
     readonly themeToggle: Locator;
     readonly githubIcon: Locator;
     readonly saveButton: Locator;
+    readonly saveStatus: Locator;
     readonly avatarButton: Locator;
+    readonly avatarImage: Locator;
+    readonly avatarMono: Locator;
+    readonly avatarInput: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -24,7 +28,11 @@ export class BoardPage {
         this.themeToggle = this.page.locator('#theme-toggle');
         this.githubIcon = this.page.locator('#token-btn');
         this.saveButton = this.page.locator('#save-btn');
+        this.saveStatus = this.page.locator('#save-status');
         this.avatarButton = this.page.locator('#avatar-btn');
+        this.avatarImage = this.page.locator('#avatar-img');
+        this.avatarMono = this.page.locator('#avatar-mono');
+        this.avatarInput = this.page.locator('#avatar-input');
     }
 
     async goto(options: GotoOptions = {}) {
@@ -40,6 +48,10 @@ export class BoardPage {
 
     addCardButton(colId: 'todo' | 'progress' | 'hold' | 'done'): Locator {
         return this.column(colId).locator('.card-add');
+    }
+
+    columnHeader(colId: 'todo' | 'progress' | 'hold' | 'done'): Locator {
+        return this.column(colId).locator('.board-column-header');
     }
 
     summaryCount(colId: 'todo' | 'progress' | 'hold' | 'done'): Locator {
@@ -60,6 +72,10 @@ export class BoardPage {
 
     async openEditCard(id: string) {
         await this.editButton(id).click();
+    }
+
+    async dragCardToColumn(id: string, colId: 'todo' | 'progress' | 'hold' | 'done') {
+        await this.card(id).dragTo(this.page.locator(`.board-column-body[data-col="${colId}"]`));
     }
 
     async openCardDetail(id: string) {

@@ -56,4 +56,20 @@ test.describe('As the owner I can manage cards', () => {
 
         await expect(cardModal.overlay, 'the modal should stay open when the title is empty').toBeVisible();
     });
+
+    test('adding a custom tag makes it available and persists on the card', async ({ boardPage, cardModal, cardDetailView, page }) => {
+        await boardPage.goto({ owner: true });
+
+        await boardPage.openAddCard('todo');
+        await cardModal.fillTitle('Card with custom tag');
+        await cardModal.addCustomTag('Side Project');
+        await expect(cardModal.tagOption('Side Project')).toHaveClass(/selected/);
+
+        await cardModal.save();
+        await expect(cardModal.overlay).toBeHidden();
+
+        await page.getByText('Card with custom tag').click();
+        await expect(cardDetailView.overlay).toBeVisible();
+        await expect(cardDetailView.tags).toContainText('Side Project');
+    });
 });

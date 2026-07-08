@@ -13,6 +13,9 @@ export class CardModal {
     readonly saveButton: Locator;
     readonly cancelButton: Locator;
     readonly deleteButton: Locator;
+    readonly newTagInput: Locator;
+    readonly addTagButton: Locator;
+    readonly tagOptions: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -27,6 +30,18 @@ export class CardModal {
         this.saveButton = this.page.locator('#card-form button[type="submit"]');
         this.cancelButton = this.page.locator('#cancel-btn');
         this.deleteButton = this.page.locator('#delete-card-btn');
+        this.newTagInput = this.page.locator('#new-tag-input');
+        this.addTagButton = this.page.locator('#add-tag-btn');
+        this.tagOptions = this.page.locator('.tag-option');
+    }
+
+    tagOption(name: string): Locator {
+        return this.tagOptions.filter({ hasText: name });
+    }
+
+    async addCustomTag(name: string) {
+        await this.newTagInput.fill(name);
+        await this.addTagButton.click();
     }
 
     async fillTitle(value: string) {

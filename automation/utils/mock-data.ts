@@ -37,3 +37,43 @@ export async function setOwnerToken(page: Page) {
         window.localStorage.setItem('gh-token', 'test-owner-token');
     });
 }
+
+export type GithubApiMockOptions = {
+    existingSha?: string; // omit to simulate no existing data.json (first-ever publish)
+    putStatus?: number; // default 200
+    putErrorMessage?: string; // body.message when putStatus is not 2xx
+};
+
+// Mocks store.js's publish() calls (GET for the current file SHA, PUT to commit) so
+// Save never touches the real repo. Returns the bodies of every PUT request the app
+// made, so a test can assert exactly what would have been committed.
+export async function mockGithubApi(page: Page, options: GithubApiMockOptions = {}) {
+    const putRequests: Record<string, unknown>[] = [];
+
+    await page.route('https://api.github.com/repos/*/*/contents/*', async (route) => {
+        const request = route.request();
+
+        if (request.method() === 'GET') {
+            if (options.existingSha) {
+                await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ sha: options.existingSha }) });
+            } else {
+                await route.fulfill({ status: 404, contentType: 'application/json', body: JSON.stringify({ message: 'Not Found' }) });
+            }
+            return;
+        }
+
+        if (request.method() === 'PUT') {
+            putRequests.push(JSON.parse(request.postData() || '{}'));
+            const status = options.putStatus ?? 200;
+            const body = status >= 200 && status < 300
+                ? { content: { sha: 'new-sha-after-commit' } }
+                : { message: options.putErrorMessage ?? 'Save failed' };
+            await route.fulfill({ status, contentType: 'application/json', body: JSON.stringify(body) });
+            return;
+        }
+
+        await route.continue();
+    });
+
+    return { putRequests };
+}
