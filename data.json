@@ -42,6 +42,20 @@
       ]
     },
     {
+      "id": "cmrbw7ztb1geu",
+      "column": "progress",
+      "title": "AI agents",
+      "desc": "",
+      "start": "2026-07-08",
+      "end": "2026-07-08",
+      "link": "https://www.youtube.com/watch?v=Zqno_vux6d8",
+      "tags": [
+        "Self-development",
+        "AI Tooling",
+        "Google Cloud Tech"
+      ]
+    },
+    {
       "id": "cmrabeycjknbn",
       "column": "progress",
       "title": "Claude Refactor",
@@ -76,6 +90,20 @@
       "link": "https://verify.skilljar.com/c/wrefwwgz9na7",
       "tags": [
         "Anthropic Academy"
+      ]
+    },
+    {
+      "id": "cmrbw1wrjqr2e",
+      "column": "done",
+      "title": "MCP vs API",
+      "desc": "MCP is already changing how we build and scale agentic systems today! \nWhat MCP servers or tools are you currently plugging into your AI agents?",
+      "start": "2026-07-08",
+      "end": "2026-07-08",
+      "link": "https://www.youtube.com/watch?v=185XGEMefgc",
+      "tags": [
+        "Self-development",
+        "AI Tooling",
+        "Google Cloud Tech"
       ]
     },
     {
