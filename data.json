@@ -42,20 +42,6 @@
       ]
     },
     {
-      "id": "cmrbw7ztb1geu",
-      "column": "progress",
-      "title": "AI agents",
-      "desc": "",
-      "start": "2026-07-08",
-      "end": "2026-07-08",
-      "link": "https://www.youtube.com/watch?v=Zqno_vux6d8",
-      "tags": [
-        "Self-development",
-        "AI Tooling",
-        "Google Cloud Tech"
-      ]
-    },
-    {
       "id": "cmrabeycjknbn",
       "column": "progress",
       "title": "Claude Refactor",
@@ -81,15 +67,17 @@
       ]
     },
     {
-      "id": "seed-cca",
+      "id": "cmrbw7ztb1geu",
       "column": "done",
-      "title": "Claude Code in Action",
-      "desc": "Hands-on course covering advanced Claude Code workflows, agent patterns, and real-world automation scenarios. Continuation of the completed theory modules.",
-      "start": "2026-07-06",
+      "title": "AI agents",
+      "desc": "",
+      "start": "2026-07-08",
       "end": "2026-07-08",
-      "link": "https://verify.skilljar.com/c/wrefwwgz9na7",
+      "link": "https://www.youtube.com/watch?v=Zqno_vux6d8",
       "tags": [
-        "Anthropic Academy"
+        "Self-development",
+        "AI Tooling",
+        "Google Cloud Tech"
       ]
     },
     {
@@ -104,6 +92,18 @@
         "Self-development",
         "AI Tooling",
         "Google Cloud Tech"
+      ]
+    },
+    {
+      "id": "seed-cca",
+      "column": "done",
+      "title": "Claude Code in Action",
+      "desc": "Hands-on course covering advanced Claude Code workflows, agent patterns, and real-world automation scenarios. Continuation of the completed theory modules.",
+      "start": "2026-07-06",
+      "end": "2026-07-08",
+      "link": "https://verify.skilljar.com/c/wrefwwgz9na7",
+      "tags": [
+        "Anthropic Academy"
       ]
     },
     {
