@@ -27,4 +27,12 @@ export class TokenModal {
     async remove() {
         await this.removeButton.click();
     }
+
+    async cancel() {
+        await this.cancelButton.click();
+    }
+
+    async closeWithIcon() {
+        await this.closeButton.click();
+    }
 }

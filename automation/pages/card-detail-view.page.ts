@@ -10,6 +10,7 @@ export class CardDetailView {
     readonly link: Locator;
     readonly editButton: Locator;
     readonly closeButton: Locator;
+    readonly closeIcon: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -21,10 +22,15 @@ export class CardDetailView {
         this.link = this.page.locator('.view-link');
         this.editButton = this.page.locator('#view-edit');
         this.closeButton = this.page.locator('#view-close2');
+        this.closeIcon = this.page.locator('#view-close');
     }
 
     async close() {
         await this.closeButton.click();
+    }
+
+    async closeWithIcon() {
+        await this.closeIcon.click();
     }
 
     async edit() {

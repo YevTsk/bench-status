@@ -1,4 +1,5 @@
-import { test as base, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
+import { test as coverageTest } from '../coverage/coverage-fixture';
 import { BoardPage } from '../pages/board.page';
 import { CardModal } from '../pages/card-modal.page';
 import { CardDetailView } from '../pages/card-detail-view.page';
@@ -11,7 +12,9 @@ type UiFixtures = {
     tokenModal: TokenModal;
 };
 
-export const test = base.extend<UiFixtures>({
+// Extends the coverage-instrumented `test` (see coverage/coverage-fixture.ts) with
+// page-object injection, so every spec gets both automatically.
+export const test = coverageTest.extend<UiFixtures>({
     boardPage: async ({ page }, use) => {
         await use(new BoardPage(page));
     },

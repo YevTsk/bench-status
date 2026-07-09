@@ -5,12 +5,17 @@
   "description": "Playwright end-to-end tests for the bench-status board",
   "scripts": {
     "test": "playwright test",
-    "testui": "playwright test --ui"
+    "testui": "playwright test --ui",
+    "coverage": "playwright test",
+    "ui-coverage": "node coverage/ui-coverage.js",
+    "dashboard": "node coverage/generate-dashboard.js",
+    "report": "playwright test && node coverage/generate-dashboard.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.48.0",
     "@types/node": "^20.0.0",
     "http-server": "^14.1.1",
+    "monocart-coverage-reports": "^2.12.12",
     "typescript": "^5.6.0"
   }
 }

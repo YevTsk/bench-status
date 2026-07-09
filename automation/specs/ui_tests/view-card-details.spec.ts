@@ -47,4 +47,22 @@ test.describe('As a visitor I can view full card details', () => {
         await page.keyboard.press('Escape');
         await expect(cardDetailView.overlay).toBeHidden();
     });
+
+    test('the Close button closes the detail view', async ({ boardPage, cardDetailView }) => {
+        await boardPage.goto();
+
+        await boardPage.openCardDetail('c1');
+        await expect(cardDetailView.overlay).toBeVisible();
+        await cardDetailView.close();
+        await expect(cardDetailView.overlay).toBeHidden();
+    });
+
+    test('the × icon closes the detail view', async ({ boardPage, cardDetailView }) => {
+        await boardPage.goto();
+
+        await boardPage.openCardDetail('c1');
+        await expect(cardDetailView.overlay).toBeVisible();
+        await cardDetailView.closeWithIcon();
+        await expect(cardDetailView.overlay).toBeHidden();
+    });
 });

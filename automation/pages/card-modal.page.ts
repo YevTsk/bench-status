@@ -13,6 +13,7 @@ export class CardModal {
     readonly saveButton: Locator;
     readonly cancelButton: Locator;
     readonly deleteButton: Locator;
+    readonly closeIcon: Locator;
     readonly newTagInput: Locator;
     readonly addTagButton: Locator;
     readonly tagOptions: Locator;
@@ -30,6 +31,7 @@ export class CardModal {
         this.saveButton = this.page.locator('#card-form button[type="submit"]');
         this.cancelButton = this.page.locator('#cancel-btn');
         this.deleteButton = this.page.locator('#delete-card-btn');
+        this.closeIcon = this.page.locator('#modal-close');
         this.newTagInput = this.page.locator('#new-tag-input');
         this.addTagButton = this.page.locator('#add-tag-btn');
         this.tagOptions = this.page.locator('.tag-option');
@@ -54,5 +56,13 @@ export class CardModal {
 
     async delete() {
         await this.deleteButton.click();
+    }
+
+    async cancel() {
+        await this.cancelButton.click();
+    }
+
+    async closeWithIcon() {
+        await this.closeIcon.click();
     }
 }

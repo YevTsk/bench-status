@@ -22,9 +22,20 @@ npm run testui    # Playwright's UI mode — step through tests, inspect locator
 
 ```
 automation/
-  playwright.config.ts   Playwright config: browser, base URL, local webServer
+  playwright.config.ts   Playwright config: browser, base URL, local webServer, coverage hooks
   tsconfig.json           TypeScript compiler options for this project
   .env.example             template for a real GitHub PAT (see Real token below)
+
+  coverage/               everything coverage-related lives here, see Coverage below
+    coverage.config.ts       shared V8 coverage options (used by the fixture + setup/teardown)
+    coverage-fixture.ts      the auto-fixture that records V8 coverage for every test
+    global-setup.ts          clears the coverage cache before the run
+    global-teardown.ts       generates the V8 coverage report after the run
+    collect-ui-coverage.js   shared cross-reference logic (index.html vs. page objects vs. specs)
+    ui-coverage.js           console report built on collect-ui-coverage.js
+    generate-dashboard.js    plain-language HTML summary for non-technical readers
+    report/                  generated output (gitignored): coverage-report.json, index.html,
+                              dashboard.html
 
   pages/                  Page Object Model — one class per screen/component
     board.page.ts           the board: columns, cards, summary chips, header controls,
@@ -34,7 +45,8 @@ automation/
     token-modal.page.ts     the "Connect GitHub" token modal (#token-overlay)
 
   fixtures/
-    ui-fixtures.ts          extends Playwright's `test` to inject page objects
+    ui-fixtures.ts          extends the coverage-instrumented `test` (from coverage/
+                             coverage-fixture.ts) to also inject page objects
                              (boardPage, cardModal, cardDetailView, tokenModal)
     files/                  static test assets (e.g. test-avatar.png)
 
@@ -64,6 +76,62 @@ automation/
 - **`data.json` is mocked**, not fetched from the real repo. `utils/mock-data.ts` intercepts the request and returns a small fixed set of cards (`DEFAULT_CARDS`). This keeps tests deterministic — they don't break just because someone edited the real published board.
 - **Owner mode needs no real GitHub token.** The app's `isOwner()` (in `store.js`) only checks that *some* non-empty value exists in `localStorage.gh-token` — it never validates it against GitHub. `BoardPage.goto({ owner: true })` seeds a dummy token before navigation, which is enough to unlock the real owner UI (add/edit/delete/drag) with zero network calls. `connect-github-token.spec.ts` also drives the real "Connect GitHub" modal directly, still with a dummy value.
 - **The Save → GitHub API flow is mocked, not real.** `utils/mock-data.ts#mockGithubApi()` intercepts `https://api.github.com/repos/*/*/contents/*` — GET returns a fake SHA (or 404, to simulate first-ever publish), PUT is captured and inspected (method, body shape, `sha` inclusion) instead of actually reaching GitHub. `save-board-to-github.spec.ts` covers a successful publish, a first-time publish with no existing file, and a failed publish (e.g. bad token).
+
+## Coverage
+
+Everything coverage-related — config, scripts, and generated output — lives in
+`automation/coverage/`, kept separate from the test infrastructure itself (pages/
+fixtures/specs). Two independent, automated coverage signals feed it, neither derived
+from the tests themselves, so neither is circular (a scenario list built *from* the
+tests would trivially read 100%).
+
+### Code coverage (V8, "how much of the logic actually ran")
+
+```bash
+npm run coverage   # same as `npm test`, coverage is collected on every run
+```
+
+Every test automatically records real [V8 coverage](https://v8.dev/blog/javascript-code-coverage)
+for `store.js`, `render.js`, `app.js`, and the theme scripts, via
+[`monocart-coverage-reports`](https://github.com/cenfun/monocart-coverage-reports) — no
+source instrumentation needed, it reads execution data straight from Chromium's DevTools
+Protocol (wired up in `coverage/coverage-fixture.ts`, `coverage/global-setup.ts` and
+`coverage/global-teardown.ts`). Report: `automation/coverage/report/index.html`
+(gitignored, regenerated each run).
+
+Caveat: "line executed" isn't the same as "behaviour verified" — a line can run as a side
+effect of some other test without any assertion actually checking its result.
+
+### UI control coverage ("how much of the interactive surface is exercised")
+
+```bash
+npm run ui-coverage
+```
+
+`coverage/ui-coverage.js` (via `coverage/collect-ui-coverage.js`) cross-references three
+independent sources: every element with a static `id` in `index.html` (the "universe" —
+buttons/inputs in the header, toolbar, and both modals), which of those are wired into a
+`pages/*.page.ts` locator, and which of *those* are actually exercised (directly, or
+through a page-object method that touches them) by a spec. Prints missing/untested
+elements by id.
+
+Scope: static id-based elements only. Dynamically rendered card-level controls
+(`.card-add`, `.card-edit`, drag & drop, per-card tags) use classes/data-attributes, not
+ids, and aren't tracked by this script — they're covered by the manual scenario list above
+instead.
+
+### Plain-language dashboard (for a non-technical reader)
+
+```bash
+npm run report      # runs the tests, then builds the dashboard
+npm run dashboard    # rebuilds the dashboard from the last test run, without re-running tests
+```
+
+`coverage/generate-dashboard.js` combines both signals above into a single self-contained
+HTML page — `automation/coverage/report/dashboard.html` — with a color-coded status
+(Good / Needs attention / Weak) and a plain-English list of what isn't checked yet
+(e.g. "Close × (card editor window)" instead of `#modal-close`). Meant for someone who
+doesn't want percentages or DOM ids, just "is this in good shape."
 
 ## Real token (`.env`) — not used by default
 

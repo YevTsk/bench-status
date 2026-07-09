@@ -30,4 +30,30 @@ test.describe('As a visitor I can connect and disconnect a GitHub token', () => 
         await expect(boardPage.addCardButton('todo')).toHaveCount(0);
         await expect(boardPage.githubIcon).not.toHaveClass(/connected/);
     });
+
+    test('Cancel closes the window without connecting', async ({ boardPage, tokenModal }) => {
+        await boardPage.goto();
+
+        await boardPage.githubIcon.click();
+        await expect(tokenModal.overlay).toBeVisible();
+        await tokenModal.input.fill('should-not-be-saved');
+        await tokenModal.cancel();
+
+        await expect(tokenModal.overlay).toBeHidden();
+        await expect(boardPage.githubIcon).not.toHaveClass(/connected/);
+        await expect(boardPage.addCardButton('todo')).toHaveCount(0);
+    });
+
+    test('the × icon closes the window without connecting', async ({ boardPage, tokenModal }) => {
+        await boardPage.goto();
+
+        await boardPage.githubIcon.click();
+        await expect(tokenModal.overlay).toBeVisible();
+        await tokenModal.input.fill('should-not-be-saved-either');
+        await tokenModal.closeWithIcon();
+
+        await expect(tokenModal.overlay).toBeHidden();
+        await expect(boardPage.githubIcon).not.toHaveClass(/connected/);
+        await expect(boardPage.addCardButton('todo')).toHaveCount(0);
+    });
 });

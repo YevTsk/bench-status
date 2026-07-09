@@ -25,6 +25,8 @@
     form.column.value = card ? card.column : (presetCol || "todo");
     form.start.value = card ? card.start : "";
     form.end.value = card ? card.end : "";
+    form.end.min = form.start.value;
+    form.start.max = form.end.value;
     form.link.value = card ? card.link : "";
 
     view.renderTagOptions(selectedTags);
@@ -294,6 +296,12 @@
 
     // modal wiring
     document.getElementById("card-form").addEventListener("submit", saveFromForm);
+    document.getElementById("card-form").start.addEventListener("change", function (e) {
+      document.getElementById("card-form").end.min = e.target.value;
+    });
+    document.getElementById("card-form").end.addEventListener("change", function (e) {
+      document.getElementById("card-form").start.max = e.target.value;
+    });
     document.getElementById("modal-close").addEventListener("click", closeModal);
     document.getElementById("cancel-btn").addEventListener("click", closeModal);
     document.getElementById("delete-card-btn").addEventListener("click", deleteCurrent);
