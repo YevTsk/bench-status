@@ -4,19 +4,6 @@
   },
   "cards": [
     {
-      "id": "cmradq96ss13i",
-      "column": "todo",
-      "title": "Dev - Test Coverage",
-      "desc": "Assessing the need for a coverage script and its visual representation across projects.\n  The value of such tooling is hard to justify up front: coverage demand varies from project to project, metrics differ, and teams follow different approaches. There's no single number that fits everyone.\n\nAs a starting point, we could implement a basic API snapshot - a lightweight baseline view of coverage that any project can adopt without committing to a heavier, one-size-fits-all solution.",
-      "start": "2026-07-07",
-      "end": "",
-      "link": "",
-      "tags": [
-        "Self-development",
-        "AI Tooling"
-      ]
-    },
-    {
       "id": "cmraox34s9pck",
       "column": "todo",
       "title": "NotebookLM Lab",
@@ -42,11 +29,11 @@
       ]
     },
     {
-      "id": "cmrc58hmezub0",
+      "id": "cmradq96ss13i",
       "column": "progress",
-      "title": "Add Automation TCs on Bench-Status board",
-      "desc": "Playwright + TypeScript E2E test suite for the board (26 tests):\n\nview-board-overview.spec.ts (2)\n- Board renders all 4 columns with their cards\n- Summary chips reflect card counts\n\ntoggle-theme.spec.ts (1)\n- Theme toggle switches and persists across reload\n\nview-board-as-guest.spec.ts (2)\n- No editing controls rendered without a GitHub token\n- Avatar is not editable without a token\n\nmanage-cards-as-owner.spec.ts (6)\n- \"+\" button only appears in the To Do column\n- Adding a card places it in the chosen column, updates counter\n- Editing a card updates its title\n- Deleting a card removes it, decrements counter\n- A card with no title cannot be saved\n- Adding a custom tag persists it on the card\n\nview-card-details.spec.ts (5)\n- Shows description, dates and tags for the selected card\n- Shows a link to the certificate when the card has one\n- Guest cannot edit from the detail view\n- Owner can jump from detail view straight into editing\n- Escape closes the detail view\n\nconnect-github-token.spec.ts (2)\n- Connecting a token unlocks the owner UI\n- Removing the token locks the UI again\n\nsave-board-to-github.spec.ts (3, mocked GitHub API)\n- Save commits the board and shows a success message\n- First-time publish omits sha when no file exists yet\n- A failed save shows an error, leaves the change unsaved\n\ndrag-card-between-columns.spec.ts (1)\n- Dragging a card moves it, updates both counters\n\nupload-avatar.spec.ts (1)\n- Uploading an image replaces the monogram with the photo\n\ncollapse-columns-on-mobile.spec.ts (3)\n- Done column starts collapsed, others expanded\n- Tapping a header toggles collapsed/expanded\n- Tapping the Done header expands it",
-      "start": "2026-07-08",
+      "title": "Dev - Test Coverage",
+      "desc": "Assessing the need for a coverage script and its visual representation across projects.\n  The value of such tooling is hard to justify up front: coverage demand varies from project to project, metrics differ, and teams follow different approaches. There's no single number that fits everyone.\n\nAs a starting point, we could implement a basic API snapshot - a lightweight baseline view of coverage that any project can adopt without committing to a heavier, one-size-fits-all solution.",
+      "start": "2026-07-07",
       "end": "",
       "link": "",
       "tags": [
@@ -68,19 +55,6 @@
       ]
     },
     {
-      "id": "cmrabeycjknbn",
-      "column": "progress",
-      "title": "Claude Refactor",
-      "desc": "Refactoring existing hooks / skills / md / agents / \nto use outside Axys",
-      "start": "2026-07-07",
-      "end": "2026-07-08",
-      "link": "",
-      "tags": [
-        "Self-development",
-        "AI Tooling"
-      ]
-    },
-    {
       "id": "seed-community",
       "column": "hold",
       "title": "AI Community Initiative",
@@ -90,6 +64,32 @@
       "link": "",
       "tags": [
         "Internal Initiative"
+      ]
+    },
+    {
+      "id": "cmrc58hmezub0",
+      "column": "done",
+      "title": "Add Automation TCs on Bench-Status board",
+      "desc": "Playwright + TypeScript E2E test suite for the board (26 tests):\n\nview-board-overview.spec.ts (2)\n- Board renders all 4 columns with their cards\n- Summary chips reflect card counts\n\ntoggle-theme.spec.ts (1)\n- Theme toggle switches and persists across reload\n\nview-board-as-guest.spec.ts (2)\n- No editing controls rendered without a GitHub token\n- Avatar is not editable without a token\n\nmanage-cards-as-owner.spec.ts (6)\n- \"+\" button only appears in the To Do column\n- Adding a card places it in the chosen column, updates counter\n- Editing a card updates its title\n- Deleting a card removes it, decrements counter\n- A card with no title cannot be saved\n- Adding a custom tag persists it on the card\n\nview-card-details.spec.ts (5)\n- Shows description, dates and tags for the selected card\n- Shows a link to the certificate when the card has one\n- Guest cannot edit from the detail view\n- Owner can jump from detail view straight into editing\n- Escape closes the detail view\n\nconnect-github-token.spec.ts (2)\n- Connecting a token unlocks the owner UI\n- Removing the token locks the UI again\n\nsave-board-to-github.spec.ts (3, mocked GitHub API)\n- Save commits the board and shows a success message\n- First-time publish omits sha when no file exists yet\n- A failed save shows an error, leaves the change unsaved\n\ndrag-card-between-columns.spec.ts (1)\n- Dragging a card moves it, updates both counters\n\nupload-avatar.spec.ts (1)\n- Uploading an image replaces the monogram with the photo\n\ncollapse-columns-on-mobile.spec.ts (3)\n- Done column starts collapsed, others expanded\n- Tapping a header toggles collapsed/expanded\n- Tapping the Done header expands it",
+      "start": "2026-07-08",
+      "end": "",
+      "link": "",
+      "tags": [
+        "Self-development",
+        "AI Tooling"
+      ]
+    },
+    {
+      "id": "cmrabeycjknbn",
+      "column": "done",
+      "title": "Claude Refactor",
+      "desc": "Refactoring existing hooks / skills / md / agents / \nto use outside Axys",
+      "start": "2026-07-07",
+      "end": "2026-07-08",
+      "link": "",
+      "tags": [
+        "Self-development",
+        "AI Tooling"
       ]
     },
     {
