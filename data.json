@@ -42,6 +42,18 @@
       ]
     },
     {
+      "id": "cmrdbadpcx1uz",
+      "column": "todo",
+      "title": "Drink Tea",
+      "desc": "Have a drink with Yulia",
+      "start": "2026-07-12",
+      "end": "",
+      "link": "",
+      "tags": [
+        "Important"
+      ]
+    },
+    {
       "id": "cmrc58hmezub0",
       "column": "progress",
       "title": "Add Automation TCs on Bench-Status board",
@@ -226,7 +238,8 @@
       "end": "2026-07-03",
       "link": "",
       "tags": [
-        "Self-development"
+        "Self-development",
+        "Important"
       ]
     },
     {
