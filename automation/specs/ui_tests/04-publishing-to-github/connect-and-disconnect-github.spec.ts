@@ -1,7 +1,7 @@
-import { test, expect } from '../../fixtures/ui-fixtures';
+import { test, expect } from '../../../fixtures/ui-fixtures';
 
-test.describe('As a visitor I can connect and disconnect a GitHub token', () => {
-    test('connecting a token unlocks the owner UI', async ({ boardPage, tokenModal }) => {
+test.describe('As a visitor, I can connect and disconnect my GitHub account', () => {
+    test('connecting GitHub reveals the add/edit buttons and Save', async ({ boardPage, tokenModal }) => {
         await boardPage.goto();
         await expect(boardPage.saveButton).toBeHidden();
         await expect(boardPage.githubIcon).not.toHaveClass(/connected/);
@@ -16,7 +16,7 @@ test.describe('As a visitor I can connect and disconnect a GitHub token', () => 
         await expect(boardPage.addCardButton('todo')).toBeVisible();
     });
 
-    test('removing the token locks the UI again', async ({ boardPage, tokenModal }) => {
+    test('disconnecting GitHub hides them again', async ({ boardPage, tokenModal }) => {
         await boardPage.goto({ owner: true });
         await expect(boardPage.addCardButton('todo')).toBeVisible();
 
@@ -31,7 +31,7 @@ test.describe('As a visitor I can connect and disconnect a GitHub token', () => 
         await expect(boardPage.githubIcon).not.toHaveClass(/connected/);
     });
 
-    test('Cancel closes the window without connecting', async ({ boardPage, tokenModal }) => {
+    test('clicking Cancel closes the window without connecting', async ({ boardPage, tokenModal }) => {
         await boardPage.goto();
 
         await boardPage.githubIcon.click();
@@ -44,7 +44,7 @@ test.describe('As a visitor I can connect and disconnect a GitHub token', () => 
         await expect(boardPage.addCardButton('todo')).toHaveCount(0);
     });
 
-    test('the × icon closes the window without connecting', async ({ boardPage, tokenModal }) => {
+    test('clicking the × icon closes the window without connecting', async ({ boardPage, tokenModal }) => {
         await boardPage.goto();
 
         await boardPage.githubIcon.click();

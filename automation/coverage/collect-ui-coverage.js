@@ -117,7 +117,8 @@ function collectUiCoverage() {
 
     const fixtureNames = Object.keys(FIXTURE_TO_PAGE_FILE);
     const specUsages = new Set();
-    fs.readdirSync(SPECS_DIR)
+    // specs live in named subfolders (01-viewing-the-board/, 02-managing-cards/, ...), so scan recursively
+    fs.readdirSync(SPECS_DIR, { recursive: true })
         .filter((f) => f.endsWith('.spec.ts'))
         .forEach((file) => {
             parseSpecUsages(path.join(SPECS_DIR, file), fixtureNames).forEach((u) => specUsages.add(u));

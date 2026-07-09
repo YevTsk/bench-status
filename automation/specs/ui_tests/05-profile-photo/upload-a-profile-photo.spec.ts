@@ -1,10 +1,10 @@
 import path from 'path';
-import { test, expect } from '../../fixtures/ui-fixtures';
+import { test, expect } from '../../../fixtures/ui-fixtures';
 
-const TEST_IMAGE = path.join(__dirname, '..', '..', 'fixtures', 'files', 'test-avatar.png');
+const TEST_IMAGE = path.join(__dirname, '..', '..', '..', 'fixtures', 'files', 'test-avatar.png');
 
-test.describe('As the owner I can upload a profile avatar', () => {
-    test('uploading an image replaces the monogram with the photo', async ({ boardPage }) => {
+test.describe('As the owner, I can upload a profile photo', () => {
+    test('uploading an image replaces the initials with the photo', async ({ boardPage }) => {
         await boardPage.goto({ owner: true });
 
         await expect(boardPage.avatarMono).toBeVisible();

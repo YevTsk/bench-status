@@ -1,6 +1,6 @@
-import { test, expect } from '../../fixtures/ui-fixtures';
+import { test, expect } from '../../../fixtures/ui-fixtures';
 
-test.describe('As a mobile visitor I can collapse and expand columns', () => {
+test.describe('As a mobile visitor, I can collapse and expand columns', () => {
     test.use({ viewport: { width: 375, height: 812 } });
 
     test('the Done column starts collapsed while others are expanded', async ({ boardPage }) => {

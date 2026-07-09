@@ -1,8 +1,8 @@
-import { test, expect } from '../../fixtures/ui-fixtures';
-import { mockGithubApi } from '../../utils/mock-data';
+import { test, expect } from '../../../fixtures/ui-fixtures';
+import { mockGithubApi } from '../../../utils/mock-data';
 
-test.describe('As the owner I can publish the board to GitHub', () => {
-    test('Save commits the current board and shows a success message', async ({ boardPage, cardModal, page }) => {
+test.describe('As the owner, clicking Save publishes my changes to GitHub', () => {
+    test('Save publishes the board and shows a confirmation message', async ({ boardPage, cardModal, page }) => {
         await boardPage.goto({ owner: true });
         const { putRequests } = await mockGithubApi(page, { existingSha: 'existing-sha-123' });
 
@@ -22,7 +22,7 @@ test.describe('As the owner I can publish the board to GitHub', () => {
         expect(putRequests[0]).toHaveProperty('content');
     });
 
-    test('publishing for the first time omits sha when no file exists yet', async ({ boardPage, cardModal, page }) => {
+    test('publishing for the very first time still works, even with nothing saved before', async ({ boardPage, cardModal, page }) => {
         await boardPage.goto({ owner: true });
         const { putRequests } = await mockGithubApi(page); // no existingSha => GET returns 404
 
@@ -35,7 +35,7 @@ test.describe('As the owner I can publish the board to GitHub', () => {
         expect(putRequests[0]).not.toHaveProperty('sha');
     });
 
-    test('a failed save shows an error and leaves the change unsaved', async ({ boardPage, cardModal, page }) => {
+    test('a failed publish shows an error and keeps the change unsaved', async ({ boardPage, cardModal, page }) => {
         await boardPage.goto({ owner: true });
         await mockGithubApi(page, { existingSha: 'sha-1', putStatus: 401, putErrorMessage: 'Bad credentials' });
 

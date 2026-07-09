@@ -1,6 +1,6 @@
-import { test, expect } from '../../fixtures/ui-fixtures';
+import { test, expect } from '../../../fixtures/ui-fixtures';
 
-test.describe('As a visitor I can see an overview of the board', () => {
+test.describe('As a visitor, I see the board with all its columns and cards', () => {
     test('the board renders all four columns with their cards', async ({ boardPage, page }) => {
         await boardPage.goto();
 
@@ -10,7 +10,7 @@ test.describe('As a visitor I can see an overview of the board', () => {
         await expect(page.getByText('Sample Done Card')).toBeVisible();
     });
 
-    test('the summary chips reflect the card counts', async ({ boardPage }) => {
+    test('the count badge on each column matches how many cards are in it', async ({ boardPage }) => {
         await boardPage.goto();
 
         await expect(boardPage.summaryCount('todo')).toHaveText('1');

@@ -1,7 +1,7 @@
-import { test, expect } from '../../fixtures/ui-fixtures';
+import { test, expect } from '../../../fixtures/ui-fixtures';
 
-test.describe('As a visitor I can view full card details', () => {
-    test('shows description, dates and tags for the selected card', async ({ boardPage, cardDetailView }) => {
+test.describe('As a visitor, clicking a card opens a popup with its full details', () => {
+    test('the popup shows description, dates and tags for the selected card', async ({ boardPage, cardDetailView }) => {
         await boardPage.goto();
 
         await boardPage.openCardDetail('c2');
@@ -12,7 +12,7 @@ test.describe('As a visitor I can view full card details', () => {
         await expect(cardDetailView.tags).toHaveText('Anthropic Academy');
     });
 
-    test('shows a link to the certificate when the card has one', async ({ boardPage, cardDetailView }) => {
+    test('the popup shows a link to the certificate when the card has one', async ({ boardPage, cardDetailView }) => {
         await boardPage.goto();
 
         await boardPage.openCardDetail('c4');
@@ -20,14 +20,14 @@ test.describe('As a visitor I can view full card details', () => {
         await expect(cardDetailView.link).toHaveAttribute('href', 'https://example.com/cert');
     });
 
-    test('a guest cannot edit from the detail view', async ({ boardPage, cardDetailView }) => {
+    test('a guest does not see an Edit button in the popup', async ({ boardPage, cardDetailView }) => {
         await boardPage.goto();
 
         await boardPage.openCardDetail('c1');
         await expect(cardDetailView.editButton).toBeHidden();
     });
 
-    test('the owner can jump from the detail view straight into editing', async ({ boardPage, cardDetailView, cardModal }) => {
+    test('the owner can click Edit to open the card editor directly', async ({ boardPage, cardDetailView, cardModal }) => {
         await boardPage.goto({ owner: true });
 
         await boardPage.openCardDetail('c1');
@@ -39,7 +39,7 @@ test.describe('As a visitor I can view full card details', () => {
         await expect(cardModal.titleInput).toHaveValue('Sample Todo Card');
     });
 
-    test('Escape closes the detail view', async ({ boardPage, cardDetailView, page }) => {
+    test('pressing Escape closes the popup', async ({ boardPage, cardDetailView, page }) => {
         await boardPage.goto();
 
         await boardPage.openCardDetail('c1');
@@ -48,7 +48,7 @@ test.describe('As a visitor I can view full card details', () => {
         await expect(cardDetailView.overlay).toBeHidden();
     });
 
-    test('the Close button closes the detail view', async ({ boardPage, cardDetailView }) => {
+    test('clicking Close closes the popup', async ({ boardPage, cardDetailView }) => {
         await boardPage.goto();
 
         await boardPage.openCardDetail('c1');
@@ -57,7 +57,7 @@ test.describe('As a visitor I can view full card details', () => {
         await expect(cardDetailView.overlay).toBeHidden();
     });
 
-    test('the × icon closes the detail view', async ({ boardPage, cardDetailView }) => {
+    test('clicking the × icon closes the popup', async ({ boardPage, cardDetailView }) => {
         await boardPage.goto();
 
         await boardPage.openCardDetail('c1');

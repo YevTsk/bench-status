@@ -55,27 +55,35 @@ automation/
                               fake-owner-token helper, GitHub API (Save) mocking
 
   specs/
-    ui_tests/                one file per user-facing behaviour, named
-                              <action>-<resource>.spec.ts
-      view-board-overview.spec.ts     columns render, cards render, summary counts
-      toggle-theme.spec.ts             light/dark toggle + persistence
-      view-board-as-guest.spec.ts      read-only mode: no edit/add/drag controls
-      manage-cards-as-owner.spec.ts    owner mode: add / edit / delete cards, custom tags
-      view-card-details.spec.ts        detail view: desc/dates/tags/link, guest vs owner
-      connect-github-token.spec.ts     connecting/removing a token via the real UI
-      save-board-to-github.spec.ts     Save → GitHub API (mocked), success + failure
-      drag-card-between-columns.spec.ts drag & drop moves a card and updates counters
-      upload-avatar.spec.ts            uploading a photo replaces the monogram
-      collapse-columns-on-mobile.spec.ts accordion collapse/expand on narrow viewports
+    ui_tests/                 grouped into numbered folders — read top to bottom and it's
+                               a tour of the page, in the order a visitor would experience it
+      01-viewing-the-board/     what anyone sees on first load
+        board-loads-with-columns-and-cards.spec.ts
+        guest-view-is-read-only.spec.ts
+        light-and-dark-theme.spec.ts
+      02-managing-cards/        everything the owner can do to a card
+        add-edit-delete-a-card.spec.ts
+        tag-a-card.spec.ts
+        card-start-and-end-dates.spec.ts
+        drag-a-card-to-another-column.spec.ts
+      03-card-details-popup/    clicking a card to see its full details
+        view-card-details.spec.ts
+      04-publishing-to-github/  connecting an account and publishing changes
+        connect-and-disconnect-github.spec.ts
+        save-and-publish-the-board.spec.ts
+      05-profile-photo/         uploading a photo in the header
+        upload-a-profile-photo.spec.ts
+      06-mobile-view/           the column accordion on narrow screens
+        collapse-and-expand-columns.spec.ts
 ```
 
-**Why this layering:** specs describe user-facing behaviour and stay readable; `pages/*` hold the actual locators and low-level actions, so a markup change only needs updating in one place; `fixtures/ui-fixtures.ts` wires page objects into `test` so specs just destructure what they need (`{ boardPage, cardModal }`) instead of constructing page objects by hand in every test.
+**Why this layering:** specs describe user-facing behaviour and stay readable; `pages/*` hold the actual locators and low-level actions, so a markup change only needs updating in one place; `fixtures/ui-fixtures.ts` wires page objects into `test` so specs just destructure what they need (`{ boardPage, cardModal }`) instead of constructing page objects by hand in every test. The numbered `specs/ui_tests/` folders exist so someone unfamiliar with the code — a PR reviewer, a manager skimming the test report — can find "the part that tests what I'm looking at" without knowing any implementation detail; folder and file names describe what's on screen, not internal mechanics (e.g. "card details popup", not "modal state").
 
 ## Test data & mocking
 
 - **`data.json` is mocked**, not fetched from the real repo. `utils/mock-data.ts` intercepts the request and returns a small fixed set of cards (`DEFAULT_CARDS`). This keeps tests deterministic — they don't break just because someone edited the real published board.
-- **Owner mode needs no real GitHub token.** The app's `isOwner()` (in `store.js`) only checks that *some* non-empty value exists in `localStorage.gh-token` — it never validates it against GitHub. `BoardPage.goto({ owner: true })` seeds a dummy token before navigation, which is enough to unlock the real owner UI (add/edit/delete/drag) with zero network calls. `connect-github-token.spec.ts` also drives the real "Connect GitHub" modal directly, still with a dummy value.
-- **The Save → GitHub API flow is mocked, not real.** `utils/mock-data.ts#mockGithubApi()` intercepts `https://api.github.com/repos/*/*/contents/*` — GET returns a fake SHA (or 404, to simulate first-ever publish), PUT is captured and inspected (method, body shape, `sha` inclusion) instead of actually reaching GitHub. `save-board-to-github.spec.ts` covers a successful publish, a first-time publish with no existing file, and a failed publish (e.g. bad token).
+- **Owner mode needs no real GitHub token.** The app's `isOwner()` (in `store.js`) only checks that *some* non-empty value exists in `localStorage.gh-token` — it never validates it against GitHub. `BoardPage.goto({ owner: true })` seeds a dummy token before navigation, which is enough to unlock the real owner UI (add/edit/delete/drag) with zero network calls. `04-publishing-to-github/connect-and-disconnect-github.spec.ts` also drives the real "Connect GitHub" window directly, still with a dummy value.
+- **The Save → GitHub API flow is mocked, not real.** `utils/mock-data.ts#mockGithubApi()` intercepts `https://api.github.com/repos/*/*/contents/*` — GET returns a fake SHA (or 404, to simulate first-ever publish), PUT is captured and inspected (method, body shape, `sha` inclusion) instead of actually reaching GitHub. `04-publishing-to-github/save-and-publish-the-board.spec.ts` covers a successful publish, a first-time publish with no existing file, and a failed publish (e.g. bad token).
 
 ## Coverage
 
@@ -141,4 +149,4 @@ doesn't want percentages or DOM ids, just "is this in good shape."
 
 1. If it needs a new locator/action, add it to the relevant `pages/*.page.ts` (or create a new page object if it's a new screen/component).
 2. If the page object is new, register it in `fixtures/ui-fixtures.ts`.
-3. Add the spec under `specs/ui_tests/`, named after the behaviour under test, and import `test`/`expect` from `../../fixtures/ui-fixtures` (not `@playwright/test` directly — that would skip the injected page objects).
+3. Add the spec under the `specs/ui_tests/NN-section/` folder that matches what's being tested (or add a new numbered folder if it's a genuinely new area of the page). Name the file and the `test.describe()` after the visible behaviour, not the implementation — a manager skimming the test report should recognize it. Import `test`/`expect` from `../../../fixtures/ui-fixtures` (not `@playwright/test` directly — that would skip the injected page objects).
