@@ -42,19 +42,6 @@
       ]
     },
     {
-      "id": "cmrc97h4ke537",
-      "column": "progress",
-      "title": "Analysis of UI coverage + implementation",
-      "desc": "",
-      "start": "2026-07-08",
-      "end": "",
-      "link": "",
-      "tags": [
-        "Self-development",
-        "AI Tooling"
-      ]
-    },
-    {
       "id": "seed-community",
       "column": "hold",
       "title": "AI Community Initiative",
@@ -64,6 +51,19 @@
       "link": "",
       "tags": [
         "Internal Initiative"
+      ]
+    },
+    {
+      "id": "cmrc97h4ke537",
+      "column": "hold",
+      "title": "Analysis of UI coverage + implementation",
+      "desc": "",
+      "start": "2026-07-08",
+      "end": "",
+      "link": "",
+      "tags": [
+        "Self-development",
+        "AI Tooling"
       ]
     },
     {
