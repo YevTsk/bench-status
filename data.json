@@ -42,6 +42,19 @@
       ]
     },
     {
+      "id": "cmrf448ov5blq",
+      "column": "progress",
+      "title": "AI-Augmented Test Automation",
+      "desc": "",
+      "start": "2026-07-13",
+      "end": "",
+      "link": "",
+      "tags": [
+        "Self-development",
+        "AI Tooling"
+      ]
+    },
+    {
       "id": "seed-community",
       "column": "hold",
       "title": "AI Community Initiative",
