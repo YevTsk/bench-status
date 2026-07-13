@@ -215,7 +215,10 @@ Bench.render = (function (store) {
       tokenBtn.classList.toggle("connected", hasToken);
       tokenBtn.title = hasToken ? "GitHub connected" : "Connect GitHub";
     }
-    if (tagsBtn) tagsBtn.hidden = !hasToken;
+    if (tagsBtn) {
+      tagsBtn.hidden = !hasToken;
+      tagsBtn.classList.toggle("connected", hasToken);
+    }
   }
 
   function setLoading(v) {
