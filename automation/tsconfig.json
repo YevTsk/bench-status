@@ -9,12 +9,11 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "baseUrl": ".",
     "paths": {
-      "@pages/*": ["pages/*"],
-      "@fixtures/*": ["fixtures/*"],
-      "@utils/*": ["utils/*"],
-      "@coverage/*": ["coverage/*"]
+      "@pages/*": ["./pages/*"],
+      "@fixtures/*": ["./fixtures/*"],
+      "@utils/*": ["./utils/*"],
+      "@coverage/*": ["./coverage/*"]
     }
   },
   "exclude": ["node_modules"]
