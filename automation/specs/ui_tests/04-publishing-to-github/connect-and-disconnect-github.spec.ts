@@ -1,4 +1,4 @@
-import { test, expect } from '../../../fixtures/ui-fixtures';
+import { test, expect } from '@fixtures/ui-fixtures';
 
 test.describe('As a visitor, I can connect and disconnect my GitHub account', () => {
     test('connecting GitHub reveals the add/edit buttons and Save', async ({ boardPage, tokenModal }) => {

@@ -1,4 +1,4 @@
-import { test, expect } from '../../../fixtures/ui-fixtures';
+import { test, expect } from '@fixtures/ui-fixtures';
 
 test.describe('As the owner, I can label a card with tags', () => {
     test('typing a new tag adds it to the card and it is still there afterwards', async ({ boardPage, cardModal, cardDetailView, page }) => {

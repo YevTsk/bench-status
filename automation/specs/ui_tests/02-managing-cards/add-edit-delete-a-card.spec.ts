@@ -1,4 +1,4 @@
-import { test, expect } from '../../../fixtures/ui-fixtures';
+import { test, expect } from '@fixtures/ui-fixtures';
 
 test.describe('As the owner, I can add, edit and delete cards', () => {
     test('the "+" button only appears in the To Do column', async ({ boardPage }) => {

@@ -1,5 +1,5 @@
 import { Locator, Page } from '@playwright/test';
-import { Card, DEFAULT_CARDS, mockBoardData, setOwnerToken } from '../utils/mock-data';
+import { Card, DEFAULT_CARDS, mockBoardData, setOwnerToken } from '@utils/mock-data';
 
 export type GotoOptions = {
     owner?: boolean;

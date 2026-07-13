@@ -1,4 +1,4 @@
-import { test, expect } from '../../../fixtures/ui-fixtures';
+import { test, expect } from '@fixtures/ui-fixtures';
 
 test.describe('As a visitor, I see the board with all its columns and cards', () => {
     test('the board renders all four columns with their cards', async ({ boardPage, page }) => {

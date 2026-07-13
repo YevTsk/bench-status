@@ -1,9 +1,9 @@
 import { expect } from '@playwright/test';
-import { test as coverageTest } from '../coverage/coverage-fixture';
-import { BoardPage } from '../pages/board.page';
-import { CardModal } from '../pages/card-modal.page';
-import { CardDetailView } from '../pages/card-detail-view.page';
-import { TokenModal } from '../pages/token-modal.page';
+import { test as coverageTest } from '@coverage/coverage-fixture';
+import { BoardPage } from '@pages/board.page';
+import { CardModal } from '@pages/card-modal.page';
+import { CardDetailView } from '@pages/card-detail-view.page';
+import { TokenModal } from '@pages/token-modal.page';
 
 type UiFixtures = {
     boardPage: BoardPage;

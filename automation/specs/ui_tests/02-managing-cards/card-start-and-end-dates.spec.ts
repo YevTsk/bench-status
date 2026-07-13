@@ -1,4 +1,4 @@
-import { test, expect } from '../../../fixtures/ui-fixtures';
+import { test, expect } from '@fixtures/ui-fixtures';
 
 test.describe('As the owner, I can set a start and end date on a card', () => {
     test('the End date field refuses anything earlier than Start date', async ({ boardPage, cardModal }) => {

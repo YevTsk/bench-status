@@ -1,5 +1,5 @@
 import path from 'path';
-import { test, expect } from '../../../fixtures/ui-fixtures';
+import { test, expect } from '@fixtures/ui-fixtures';
 
 const TEST_IMAGE = path.join(__dirname, '..', '..', '..', 'fixtures', 'files', 'test-avatar.png');
 

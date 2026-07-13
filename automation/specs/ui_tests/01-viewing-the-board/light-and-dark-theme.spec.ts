@@ -1,4 +1,4 @@
-import { test, expect } from '../../../fixtures/ui-fixtures';
+import { test, expect } from '@fixtures/ui-fixtures';
 
 test.describe('As a visitor, I can switch between light and dark theme', () => {
     test('clicking the sun/moon icon switches theme and remembers the choice after a refresh', async ({ boardPage }) => {

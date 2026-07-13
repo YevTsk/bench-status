@@ -1,4 +1,4 @@
-import { test, expect } from '../../../fixtures/ui-fixtures';
+import { test, expect } from '@fixtures/ui-fixtures';
 
 test.describe('As a guest, I can only look at the board', () => {
     test('no add, edit or drag controls appear until GitHub is connected', async ({ boardPage, page }) => {

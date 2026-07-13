@@ -1,4 +1,4 @@
-import { test, expect } from '../../../fixtures/ui-fixtures';
+import { test, expect } from '@fixtures/ui-fixtures';
 
 test.describe('As a visitor, clicking a card opens a popup with its full details', () => {
     test('the popup shows description, dates and tags for the selected card', async ({ boardPage, cardDetailView }) => {

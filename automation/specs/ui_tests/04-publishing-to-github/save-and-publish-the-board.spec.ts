@@ -1,5 +1,5 @@
-import { test, expect } from '../../../fixtures/ui-fixtures';
-import { mockGithubApi } from '../../../utils/mock-data';
+import { test, expect } from '@fixtures/ui-fixtures';
+import { mockGithubApi } from '@utils/mock-data';
 
 test.describe('As the owner, clicking Save publishes my changes to GitHub', () => {
     test('Save publishes the board and shows a confirmation message', async ({ boardPage, cardModal, page }) => {

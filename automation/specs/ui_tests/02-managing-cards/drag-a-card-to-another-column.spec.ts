@@ -1,4 +1,4 @@
-import { test, expect } from '../../../fixtures/ui-fixtures';
+import { test, expect } from '@fixtures/ui-fixtures';
 
 test.describe('As the owner, I can drag a card into a different column', () => {
     test('dragging a card moves it and updates both counts', async ({ boardPage }) => {

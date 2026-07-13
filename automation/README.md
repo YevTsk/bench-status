@@ -149,4 +149,17 @@ doesn't want percentages or DOM ids, just "is this in good shape."
 
 1. If it needs a new locator/action, add it to the relevant `pages/*.page.ts` (or create a new page object if it's a new screen/component).
 2. If the page object is new, register it in `fixtures/ui-fixtures.ts`.
-3. Add the spec under the `specs/ui_tests/NN-section/` folder that matches what's being tested (or add a new numbered folder if it's a genuinely new area of the page). Name the file and the `test.describe()` after the visible behaviour, not the implementation — a manager skimming the test report should recognize it. Import `test`/`expect` from `../../../fixtures/ui-fixtures` (not `@playwright/test` directly — that would skip the injected page objects).
+3. Add the spec under the `specs/ui_tests/NN-section/` folder that matches what's being tested (or add a new numbered folder if it's a genuinely new area of the page). Name the file and the `test.describe()` after the visible behaviour, not the implementation — a manager skimming the test report should recognize it. Import `test`/`expect` from `@fixtures/ui-fixtures` (not `@playwright/test` directly — that would skip the injected page objects).
+
+### Import aliases
+
+Cross-folder TypeScript imports use path aliases instead of relative `../../../` chains, configured in `tsconfig.json`:
+
+| Alias | Resolves to |
+| --- | --- |
+| `@pages/*` | `pages/*` |
+| `@fixtures/*` | `fixtures/*` |
+| `@utils/*` | `utils/*` |
+| `@coverage/*` | `coverage/*` |
+
+Playwright resolves these natively at runtime (no extra package needed) as long as they're declared under `compilerOptions.paths` in `tsconfig.json`. Same-folder sibling imports (e.g. `coverage/global-setup.ts` importing `coverage/coverage.config.ts`) stay relative (`./coverage.config`) — aliases are for crossing folder boundaries, not for every import. Note this only applies to `.ts` files run through Playwright/tsc; the plain `.js` scripts under `coverage/` (`ui-coverage.js`, `generate-dashboard.js`, `collect-ui-coverage.js`) run as plain Node via `require()`, which has no awareness of `tsconfig.json` — those keep relative `require('./collect-ui-coverage')`-style paths.
