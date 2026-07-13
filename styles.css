@@ -755,7 +755,7 @@ select:focus-visible, textarea:focus-visible {
   }
   .page-header-id { padding-right: 38px; }
   .page-header-left h1 { font-size: 18px; }
-  .updated { padding-top: 0; margin-top: 0; }
+  .updated { padding-top: 0; margin-top: 0; align-self: flex-end; }
 
   .summary-row { gap: 8px; margin-bottom: 20px; }
   .chip { font-size: 12px; padding: 6px 11px; }
