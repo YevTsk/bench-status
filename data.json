@@ -30,7 +30,7 @@
     },
     {
       "id": "cmradq96ss13i",
-      "column": "progress",
+      "column": "todo",
       "title": "Dev - Test Coverage",
       "desc": "Assessing the need for a coverage script and its visual representation across projects.\n  The value of such tooling is hard to justify up front: coverage demand varies from project to project, metrics differ, and teams follow different approaches. There's no single number that fits everyone.\n\nAs a starting point, we could implement a basic API snapshot - a lightweight baseline view of coverage that any project can adopt without committing to a heavier, one-size-fits-all solution.",
       "start": "2026-07-07",
@@ -42,11 +42,11 @@
       ]
     },
     {
-      "id": "cmrf448ov5blq",
-      "column": "progress",
-      "title": "AI-Augmented Test Automation",
+      "id": "cmrc97h4ke537",
+      "column": "todo",
+      "title": "Analysis of UI coverage + implementation",
       "desc": "",
-      "start": "2026-07-13",
+      "start": "2026-07-08",
       "end": "",
       "link": "",
       "tags": [
@@ -56,7 +56,7 @@
     },
     {
       "id": "seed-community",
-      "column": "hold",
+      "column": "progress",
       "title": "AI Community Initiative",
       "desc": "Contacted the initiative lead. Awaiting task assignment to begin contribution. Ready to start as soon as scope is defined.",
       "start": "2026-07-06",
@@ -67,12 +67,12 @@
       ]
     },
     {
-      "id": "cmrc97h4ke537",
-      "column": "hold",
-      "title": "Analysis of UI coverage + implementation",
+      "id": "cmrf448ov5blq",
+      "column": "done",
+      "title": "AI-Augmented Test Automation",
       "desc": "",
-      "start": "2026-07-08",
-      "end": "",
+      "start": "2026-07-13",
+      "end": "2026-07-13",
       "link": "",
       "tags": [
         "Self-development",
