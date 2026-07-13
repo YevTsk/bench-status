@@ -753,6 +753,9 @@ select:focus-visible, textarea:focus-visible {
     flex-direction: column;
     gap: 6px;
   }
+  .header-actions #theme-toggle { order: 1; }
+  .header-actions #token-btn { order: 2; }
+  .header-actions #tags-btn { order: 3; }
   .page-header-id { padding-right: 38px; }
   .page-header-left h1 { font-size: 18px; }
   .updated { padding-top: 0; margin-top: 0; align-self: flex-end; }
