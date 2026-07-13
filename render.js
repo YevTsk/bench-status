@@ -186,6 +186,18 @@ Bench.render = (function (store) {
     }).join("");
   }
 
+  function renderTagsList() {
+    var wrap = document.getElementById("tags-list");
+    if (!wrap) return;
+    wrap.innerHTML = store.state.tags.map(function (t) {
+      return '' +
+        '<div class="tag-row" data-tag="' + escapeHtml(t) + '">' +
+        '  <input type="text" class="tag-row-input" value="' + escapeHtml(t) + '">' +
+        '  <button type="button" class="tag-row-delete" title="Delete tag" aria-label="Delete tag">&times;</button>' +
+        "</div>";
+    }).join("");
+  }
+
   function setStatus(msg, isErr) {
     var el = document.getElementById("save-status");
     if (!el) return;
@@ -197,11 +209,13 @@ Bench.render = (function (store) {
     var hasToken = store.isOwner();
     var saveBtn = document.getElementById("save-btn");
     var tokenBtn = document.getElementById("token-btn");
+    var tagsBtn = document.getElementById("tags-btn");
     if (saveBtn) { saveBtn.hidden = !hasToken; saveBtn.disabled = !store.isDirty(); }
     if (tokenBtn) {
       tokenBtn.classList.toggle("connected", hasToken);
       tokenBtn.title = hasToken ? "GitHub connected" : "Connect GitHub";
     }
+    if (tagsBtn) tagsBtn.hidden = !hasToken;
   }
 
   function setLoading(v) {
@@ -220,6 +234,7 @@ Bench.render = (function (store) {
     renderProfile: renderProfile,
     renderStats: renderStats,
     renderTagOptions: renderTagOptions,
+    renderTagsList: renderTagsList,
     setStatus: setStatus,
     updateSaveUI: updateSaveUI,
     setLoading: setLoading

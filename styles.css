@@ -141,6 +141,7 @@ body {
   transition: box-shadow 0.18s ease, transform 0.18s ease, color 0.15s ease;
 }
 .theme-toggle:hover, .icon-btn:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.icon-btn[hidden] { display: none; }
 .theme-toggle svg { width: 14px; height: 14px; }
 .icon-btn svg { width: 16px; height: 16px; }
 .icon-btn.connected { color: var(--accent); }
@@ -629,6 +630,47 @@ select:focus-visible, textarea:focus-visible {
 }
 .tag-add { display: flex; gap: 8px; }
 .tag-add input { flex: 1; }
+
+.tag-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+.tag-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tag-row-input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 7px 10px;
+  transition: border-color 0.15s ease;
+}
+.tag-row-input:focus { outline: none; border-color: var(--accent); }
+.tag-row-delete {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.tag-row-delete:hover { color: #dc2626; background: var(--wait-bg); }
 
 .modal-actions {
   display: flex;

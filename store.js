@@ -67,6 +67,42 @@ Bench.store = (function () {
     try { localStorage.setItem(TAGS_KEY, JSON.stringify(state.tags)); } catch (e) {}
   }
 
+  function deleteTag(name) {
+    var idx = state.tags.indexOf(name);
+    if (idx !== -1) state.tags.splice(idx, 1);
+    saveTags();
+
+    var touchedCard = false;
+    state.cards.forEach(function (c) {
+      if (c.tags && c.tags.indexOf(name) !== -1) {
+        c.tags = c.tags.filter(function (t) { return t !== name; });
+        touchedCard = true;
+      }
+    });
+    return touchedCard;
+  }
+
+  function renameTag(oldName, newName) {
+    newName = (newName || "").trim();
+    if (!newName || newName === oldName || state.tags.indexOf(newName) !== -1) {
+      return { ok: false, touchedCard: false };
+    }
+
+    var idx = state.tags.indexOf(oldName);
+    if (idx === -1) return { ok: false, touchedCard: false };
+    state.tags[idx] = newName;
+    saveTags();
+
+    var touchedCard = false;
+    state.cards.forEach(function (c) {
+      if (c.tags && c.tags.indexOf(oldName) !== -1) {
+        c.tags = c.tags.map(function (t) { return t === oldName ? newName : t; });
+        touchedCard = true;
+      }
+    });
+    return { ok: true, touchedCard: touchedCard };
+  }
+
   function markDirty(flag) {
     dirty = !!flag;
     persist();
@@ -178,6 +214,8 @@ Bench.store = (function () {
     findCard: findCard,
     loadTags: loadTags,
     saveTags: saveTags,
+    deleteTag: deleteTag,
+    renameTag: renameTag,
     markDirty: markDirty,
     isDirty: isDirty,
     getToken: getToken,

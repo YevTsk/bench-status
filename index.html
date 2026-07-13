@@ -17,13 +17,16 @@
 <meta name="twitter:description" content="Available for assignment · actively upskilling.">
 <meta name="twitter:image" content="https://yevtsk.github.io/bench-status/og-image.svg">
 <script src="theme-init.js"></script>
-<link rel="stylesheet" href="styles.css?v=8">
+<link rel="stylesheet" href="styles.css?v=11">
 </head>
 <body>
 <div class="page">
 
   <div class="page-header">
     <div class="header-actions">
+      <button type="button" class="icon-btn" id="tags-btn" aria-label="Manage tags" title="Manage tags" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41 13 21l-9-9V3h9l7.59 7.59a2 2 0 0 1 0 2.82z"/><circle cx="7.5" cy="7.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+      </button>
       <button type="button" class="icon-btn" id="token-btn" aria-label="GitHub" title="Connect GitHub">
         <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
       </button>
@@ -142,10 +145,6 @@
       <div class="field">
         <span class="field-label">Tags</span>
         <div class="tag-options" id="tag-options"></div>
-        <div class="tag-add">
-          <input type="text" id="new-tag-input" placeholder="Add custom tag…">
-          <button type="button" id="add-tag-btn" class="btn-secondary">Add</button>
-        </div>
       </div>
 
       <div class="modal-actions">
@@ -178,6 +177,25 @@
   </div>
 </div>
 
+<!-- TAGS MANAGEMENT MODAL -->
+<div class="modal-overlay" id="tags-overlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tags-title">
+    <div class="modal-header">
+      <h2 id="tags-title">Manage tags</h2>
+      <button type="button" class="modal-close" id="tags-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="tag-list" id="tags-list"></div>
+    <div class="tag-add">
+      <input type="text" id="tags-new-input" placeholder="Add new tag…">
+      <button type="button" id="tags-add-btn" class="btn-secondary">Add</button>
+    </div>
+    <div class="modal-actions">
+      <div class="modal-actions-spacer"></div>
+      <button type="button" class="btn-primary" id="tags-done-btn">Done</button>
+    </div>
+  </div>
+</div>
+
 <!-- CARD DETAIL (VIEW) MODAL -->
 <div class="modal-overlay" id="view-overlay" hidden>
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="view-title">
@@ -194,9 +212,9 @@
   </div>
 </div>
 
-<script src="store.js?v=1"></script>
-<script src="render.js?v=1"></script>
-<script src="app.js?v=8"></script>
+<script src="store.js?v=3"></script>
+<script src="render.js?v=3"></script>
+<script src="app.js?v=10"></script>
 <script src="theme-toggle.js"></script>
 </body>
 </html>

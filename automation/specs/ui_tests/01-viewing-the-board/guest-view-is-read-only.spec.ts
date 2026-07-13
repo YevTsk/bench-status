@@ -7,6 +7,7 @@ test.describe('As a guest, I can only look at the board', () => {
         await expect(page.locator('.card-add')).toHaveCount(0);
         await expect(page.locator('.card-edit')).toHaveCount(0);
         await expect(boardPage.saveButton).toBeHidden();
+        await expect(boardPage.tagsButton).toBeHidden();
         await expect(boardPage.cards.first()).toHaveAttribute('draggable', 'false');
     });
 

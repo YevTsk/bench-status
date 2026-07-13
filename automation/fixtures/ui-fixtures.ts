@@ -4,12 +4,14 @@ import { BoardPage } from '@pages/board.page';
 import { CardModal } from '@pages/card-modal.page';
 import { CardDetailView } from '@pages/card-detail-view.page';
 import { TokenModal } from '@pages/token-modal.page';
+import { TagsModal } from '@pages/tags-modal.page';
 
 type UiFixtures = {
     boardPage: BoardPage;
     cardModal: CardModal;
     cardDetailView: CardDetailView;
     tokenModal: TokenModal;
+    tagsModal: TagsModal;
 };
 
 // Extends the coverage-instrumented `test` (see coverage/coverage-fixture.ts) with
@@ -26,6 +28,9 @@ export const test = coverageTest.extend<UiFixtures>({
     },
     tokenModal: async ({ page }, use) => {
         await use(new TokenModal(page));
+    },
+    tagsModal: async ({ page }, use) => {
+        await use(new TagsModal(page));
     },
 });
 

@@ -23,6 +23,7 @@ const FIXTURE_TO_PAGE_FILE = {
     cardModal: 'card-modal.page.ts',
     cardDetailView: 'card-detail-view.page.ts',
     tokenModal: 'token-modal.page.ts',
+    tagsModal: 'tags-modal.page.ts',
 };
 
 function readFile(filePath) {

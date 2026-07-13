@@ -13,6 +13,7 @@ export class BoardPage {
     readonly cards: Locator;
     readonly themeToggle: Locator;
     readonly githubIcon: Locator;
+    readonly tagsButton: Locator;
     readonly saveButton: Locator;
     readonly saveStatus: Locator;
     readonly avatarButton: Locator;
@@ -27,6 +28,7 @@ export class BoardPage {
         this.cards = this.page.locator('.task-card');
         this.themeToggle = this.page.locator('#theme-toggle');
         this.githubIcon = this.page.locator('#token-btn');
+        this.tagsButton = this.page.locator('#tags-btn');
         this.saveButton = this.page.locator('#save-btn');
         this.saveStatus = this.page.locator('#save-status');
         this.avatarButton = this.page.locator('#avatar-btn');

@@ -31,7 +31,6 @@
 
     view.renderTagOptions(selectedTags);
     document.getElementById("delete-card-btn").hidden = !card;
-    document.getElementById("new-tag-input").value = "";
 
     document.getElementById("modal-overlay").hidden = false;
     setTimeout(function () { form.title.focus(); }, 30);
@@ -85,17 +84,47 @@
     closeModal();
   }
 
-  function addCustomTag() {
-    var input = document.getElementById("new-tag-input");
+  /* ---------- tags management modal (owner only) ---------- */
+
+  function openTagsModal() {
+    view.renderTagsList();
+    document.getElementById("tags-overlay").hidden = false;
+    setTimeout(function () { document.getElementById("tags-new-input").focus(); }, 30);
+  }
+
+  function closeTagsModal() {
+    document.getElementById("tags-overlay").hidden = true;
+  }
+
+  function addNewTag() {
+    var input = document.getElementById("tags-new-input");
     var val = input.value.trim();
     if (!val) return;
     if (store.state.tags.indexOf(val) === -1) {
       store.state.tags.push(val);
       store.saveTags();
     }
-    selectedTags[val] = true;
     input.value = "";
-    view.renderTagOptions(selectedTags);
+    view.renderTagsList();
+  }
+
+  function deleteTagRow(name) {
+    var touchedCard = store.deleteTag(name);
+    view.renderTagsList();
+    view.render();
+    if (touchedCard) markDirty(true);
+  }
+
+  function renameTagRow(oldName, newName, inputEl) {
+    if (newName.trim() === oldName) return;
+    var result = store.renameTag(oldName, newName);
+    if (result.ok) {
+      view.renderTagsList();
+      view.render();
+      if (result.touchedCard) markDirty(true);
+    } else {
+      inputEl.value = oldName;
+    }
   }
 
   /* ---------- card detail (view) ---------- */
@@ -305,10 +334,6 @@
     document.getElementById("modal-close").addEventListener("click", closeModal);
     document.getElementById("cancel-btn").addEventListener("click", closeModal);
     document.getElementById("delete-card-btn").addEventListener("click", deleteCurrent);
-    document.getElementById("add-tag-btn").addEventListener("click", addCustomTag);
-    document.getElementById("new-tag-input").addEventListener("keydown", function (e) {
-      if (e.key === "Enter") { e.preventDefault(); addCustomTag(); }
-    });
     document.getElementById("tag-options").addEventListener("click", function (e) {
       var opt = e.target.closest(".tag-option");
       if (!opt) return;
@@ -324,6 +349,36 @@
     document.getElementById("token-cancel").addEventListener("click", closeTokenModal);
     document.getElementById("token-save").addEventListener("click", saveToken);
     document.getElementById("token-remove").addEventListener("click", removeToken);
+
+    // tags management controls
+    document.getElementById("tags-btn").addEventListener("click", openTagsModal);
+    document.getElementById("tags-close").addEventListener("click", closeTagsModal);
+    document.getElementById("tags-done-btn").addEventListener("click", closeTagsModal);
+    document.getElementById("tags-add-btn").addEventListener("click", addNewTag);
+    document.getElementById("tags-new-input").addEventListener("keydown", function (e) {
+      if (e.key === "Enter") { e.preventDefault(); addNewTag(); }
+    });
+    document.getElementById("tags-list").addEventListener("click", function (e) {
+      var del = e.target.closest(".tag-row-delete");
+      if (!del) return;
+      var row = del.closest(".tag-row");
+      deleteTagRow(row.getAttribute("data-tag"));
+    });
+    document.getElementById("tags-list").addEventListener("focusout", function (e) {
+      var input = e.target.closest(".tag-row-input");
+      if (!input) return;
+      var row = input.closest(".tag-row");
+      renameTagRow(row.getAttribute("data-tag"), input.value, input);
+    });
+    document.getElementById("tags-list").addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && e.target.classList.contains("tag-row-input")) {
+        e.preventDefault();
+        e.target.blur();
+      }
+    });
+    document.getElementById("tags-overlay").addEventListener("click", function (e) {
+      if (e.target === this) closeTagsModal();
+    });
 
     // card detail (view) controls
     document.getElementById("view-close").addEventListener("click", closeView);
@@ -341,6 +396,7 @@
       if (e.key !== "Escape") return;
       if (!document.getElementById("modal-overlay").hidden) closeModal();
       if (!document.getElementById("token-overlay").hidden) closeTokenModal();
+      if (!document.getElementById("tags-overlay").hidden) closeTagsModal();
       if (!document.getElementById("view-overlay").hidden) closeView();
     });
 
