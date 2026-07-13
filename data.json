@@ -55,12 +55,25 @@
       ]
     },
     {
-      "id": "seed-community",
+      "id": "cmrixc5ezii7g",
       "column": "progress",
+      "title": "QA-Portal - create",
+      "desc": "",
+      "start": "2026-07-13",
+      "end": "",
+      "link": "",
+      "tags": [
+        "Self-development",
+        "AI Tooling"
+      ]
+    },
+    {
+      "id": "seed-community",
+      "column": "done",
       "title": "AI Community Initiative",
       "desc": "Contacted the initiative lead. Awaiting task assignment to begin contribution. Ready to start as soon as scope is defined.",
       "start": "2026-07-06",
-      "end": "",
+      "end": "2026-07-10",
       "link": "",
       "tags": [
         "Internal Initiative"
