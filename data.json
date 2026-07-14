@@ -17,18 +17,6 @@
       ]
     },
     {
-      "id": "cmralxr6l9c9o",
-      "column": "todo",
-      "title": "CV-Based Questions",
-      "desc": "Drafted a structured set of likely interview questions across all CV sections (projects, AI-enabled workflow, leadership, tech stack) to prepare talking points ahead of upcoming interviews.",
-      "start": "",
-      "end": "",
-      "link": "",
-      "tags": [
-        "CV"
-      ]
-    },
-    {
       "id": "cmradq96ss13i",
       "column": "todo",
       "title": "Dev - Test Coverage",
@@ -39,6 +27,18 @@
       "tags": [
         "Self-development",
         "AI Tooling"
+      ]
+    },
+    {
+      "id": "cmralxr6l9c9o",
+      "column": "todo",
+      "title": "CV-Based Questions",
+      "desc": "Drafted a structured set of likely interview questions across all CV sections (projects, AI-enabled workflow, leadership, tech stack) to prepare talking points ahead of upcoming interviews.",
+      "start": "",
+      "end": "",
+      "link": "",
+      "tags": [
+        "CV"
       ]
     },
     {
