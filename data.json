@@ -4,19 +4,6 @@
   },
   "cards": [
     {
-      "id": "cmrc97h4ke537",
-      "column": "todo",
-      "title": "Analysis of UI coverage + implementation",
-      "desc": "",
-      "start": "2026-07-08",
-      "end": "",
-      "link": "",
-      "tags": [
-        "Self-development",
-        "AI Tooling"
-      ]
-    },
-    {
       "id": "cmrlva042o1rt",
       "column": "todo",
       "title": "AI-Augmented Test Automation",
@@ -56,20 +43,35 @@
       ]
     },
     {
+      "id": "cmrc97h4ke537",
+      "column": "progress",
+      "title": "Analysis of UI coverage + implementation",
+      "desc": "",
+      "start": "2026-07-08",
+      "end": "",
+      "link": "",
+      "tags": [
+        "Self-development",
+        "AI Tooling",
+        "Learning @ NIX"
+      ]
+    },
+    {
       "id": "cmralxr6l9c9o",
-      "column": "todo",
-      "title": "CV-Based Questions",
+      "column": "progress",
+      "title": "Interview + CV-Based Questions",
       "desc": "Drafted a structured set of likely interview questions across all CV sections (projects, AI-enabled workflow, leadership, tech stack) to prepare talking points ahead of upcoming interviews.",
       "start": "",
       "end": "",
       "link": "",
       "tags": [
+        "Self-development",
         "CV"
       ]
     },
     {
       "id": "cmrixc5ezii7g",
-      "column": "progress",
+      "column": "hold",
       "title": "QA-Portal - create",
       "desc": "",
       "start": "2026-07-13",
