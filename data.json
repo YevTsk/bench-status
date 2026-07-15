@@ -13,7 +13,8 @@
       "link": "https://learning.nixs.com/course/view.php?id=49",
       "tags": [
         "Self-development",
-        "AI Tooling"
+        "AI Tooling",
+        "Learning @ NIX"
       ]
     },
     {
@@ -30,6 +31,20 @@
       ]
     },
     {
+      "id": "cmrc97h4ke537",
+      "column": "todo",
+      "title": "Analysis of UI coverage + implementation",
+      "desc": "",
+      "start": "2026-07-08",
+      "end": "",
+      "link": "",
+      "tags": [
+        "Self-development",
+        "AI Tooling",
+        "Learning @ NIX"
+      ]
+    },
+    {
       "id": "cmradq96ss13i",
       "column": "todo",
       "title": "Dev - Test Coverage",
@@ -40,20 +55,6 @@
       "tags": [
         "Self-development",
         "AI Tooling"
-      ]
-    },
-    {
-      "id": "cmrc97h4ke537",
-      "column": "progress",
-      "title": "Analysis of UI coverage + implementation",
-      "desc": "",
-      "start": "2026-07-08",
-      "end": "",
-      "link": "",
-      "tags": [
-        "Self-development",
-        "AI Tooling",
-        "Learning @ NIX"
       ]
     },
     {
