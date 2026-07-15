@@ -4,20 +4,6 @@
   },
   "cards": [
     {
-      "id": "cmrlva042o1rt",
-      "column": "todo",
-      "title": "AI-Augmented Test Automation",
-      "desc": "This course will give you a solid understanding of how to use GitHub Copilot AI features to build a faster, more consistent QA engineering workflow.\n\nYou will work hands-on in VS Code, and by the end you will be able to:\n\ntake a Jira story,\ngenerate test cases from it,\nimplement the tests, review them, and report defects.\nAll that without leaving your editor and without copy-pasting between tools.",
-      "start": "",
-      "end": "",
-      "link": "https://learning.nixs.com/course/view.php?id=49",
-      "tags": [
-        "Self-development",
-        "AI Tooling",
-        "Learning @ NIX"
-      ]
-    },
-    {
       "id": "cmraox34s9pck",
       "column": "todo",
       "title": "NotebookLM Lab",
@@ -55,6 +41,20 @@
       "tags": [
         "Self-development",
         "AI Tooling"
+      ]
+    },
+    {
+      "id": "cmrlva042o1rt",
+      "column": "progress",
+      "title": "AI-Augmented Test Automation",
+      "desc": "This course will give you a solid understanding of how to use GitHub Copilot AI features to build a faster, more consistent QA engineering workflow.\n\nYou will work hands-on in VS Code, and by the end you will be able to:\n\ntake a Jira story,\ngenerate test cases from it,\nimplement the tests, review them, and report defects.\nAll that without leaving your editor and without copy-pasting between tools.",
+      "start": "",
+      "end": "",
+      "link": "https://learning.nixs.com/course/view.php?id=49",
+      "tags": [
+        "Self-development",
+        "AI Tooling",
+        "Learning @ NIX"
       ]
     },
     {
